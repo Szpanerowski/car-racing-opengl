@@ -71,6 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -148,7 +149,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="input\InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="rendering\RaceFrameRenderer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="input\InputHandler.h" />
+    <ClInclude Include="models\controllers\CarController.h" />
+    <ClInclude Include="rendering\RaceFrameRenderer.h" />
+    <ClInclude Include="rendering\FrameRenderer.h" />
+    <ClInclude Include="visuals\RacingCar.h" />
+    <ClInclude Include="visuals\VisualObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
