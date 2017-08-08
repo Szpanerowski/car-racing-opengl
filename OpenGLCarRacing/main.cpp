@@ -5,6 +5,7 @@
 #include "glm/gtc/type_ptr.hpp"
 #include <cstdio>
 
+
 const char* windowTitle = "Super Ultra Car Racing";
 const int windowWidth = 800;
 const int windowHeight = 600;
