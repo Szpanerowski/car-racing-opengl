@@ -59,5 +59,7 @@ int main(int argc, char* argv[]) {
 	initializeGLUT(&argc, argv);
 	initializeGLEW();
 
+	initializeInputHandler();
+
 	glutMainLoop();
 }
