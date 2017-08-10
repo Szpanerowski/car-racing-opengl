@@ -26,6 +26,32 @@ void displayFrame() {
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
+	glViewport(0, 0, windowWidth, windowHeight);
+	glEnable(GL_DEPTH_TEST);
+	glewExperimental = GL_TRUE;
+
+	Shader shader("res/shaders/modelLoading.vs", "res/shaders/modelLoading.frag");
+	// Load models
+	Model ourModel("res/models/mustang.obj");
+
+	glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+
+	shader.Use();
+
+	glm::mat4 view = camera.GetViewMatrix();
+	glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+
+	// Draw the loaded model
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); 
+	model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+	glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+	ourModel.Draw(shader);
+
+	// Swap the buffers
+
 	glutSwapBuffers();
 }
 
@@ -59,12 +85,6 @@ int main(int argc, char* argv[]) {
 
 	initializeGLUT(&argc, argv);
 	initializeGLEW();
-
-
-	Shader shader("res/shaders/modelLoading.vs", "res/shaders/modelLoading.frag");
-	// Load models
-	Model ourModel("res/models/nanosuit.obj");
-
 
 	glutMainLoop();
 
