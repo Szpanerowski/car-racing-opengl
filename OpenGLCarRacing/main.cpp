@@ -33,7 +33,7 @@ void displayFrame() {
 
 	Shader shader("res/shaders/modelLoading.vs", "res/shaders/modelLoading.frag");
 	// Load models
-	Model ourModel("res/models/mustang.obj");
+	Model ourModel("res/models/car.obj");
 
 	glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 
@@ -45,13 +45,13 @@ void displayFrame() {
 
 	// Draw the loaded model
 	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); 
-	model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+	//model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); 
+	model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
+	model = glm::rotate(model,90.0f, glm::vec3(0, 1.0f, 0));
 	glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 	ourModel.Draw(shader);
 
 	// Swap the buffers
-
 	glutSwapBuffers();
 }
 
