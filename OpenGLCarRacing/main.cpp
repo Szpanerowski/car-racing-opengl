@@ -9,6 +9,7 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "Model.h"
+#include "Drawable.h"
 
 #include "SOIL2/SOIL2.h"
 
@@ -18,40 +19,29 @@ const int windowHeight = 600;
 const int windowPositionX = 300;
 const int windowPositionY = 100;
 
+glm::mat4 projection;
+
+
 // Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+
+Drawable car;
+Drawable car2;
 
 void displayFrame() {
 
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	car.scale(0.4f, 0.4f, 0.4f);
+	car.translate(-2.0f, 0, 0);
+	car.draw(camera.GetViewMatrix(), projection);
 
-	glViewport(0, 0, windowWidth, windowHeight);
-	glEnable(GL_DEPTH_TEST);
-	glewExperimental = GL_TRUE;
+	car2.scale(0.4f, 0.4f, 0.4f);
+	car2.translate(2.0f, 0, 0);
+	car2.draw(camera.GetViewMatrix(), projection);
 
-	Shader shader("res/shaders/modelLoading.vs", "res/shaders/modelLoading.frag");
-	// Load models
-	Model ourModel("res/models/car.obj");
-
-	glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
-
-	shader.Use();
-
-	glm::mat4 view = camera.GetViewMatrix();
-	glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-	glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-
-	// Draw the loaded model
-	glm::mat4 model;
-	//model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); 
-	model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
-	model = glm::rotate(model,90.0f, glm::vec3(0, 1.0f, 0));
-	glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-	ourModel.Draw(shader);
-
-	// Swap the buffers
+	//swap buffers
 	glutSwapBuffers();
 }
 
@@ -85,6 +75,31 @@ int main(int argc, char* argv[]) {
 
 	initializeGLUT(&argc, argv);
 	initializeGLEW();
+
+	glViewport(0, 0, windowWidth, windowHeight);
+	glEnable(GL_DEPTH_TEST);
+	// Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
+	glewExperimental = GL_TRUE;
+	// Initialize GLEW to setup the OpenGL Function pointers
+	if (GLEW_OK != glewInit())
+	{
+		std::cout << "Failed to initialize GLEW" << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	// Define the viewport dimensions
+	glViewport(0, 0, windowWidth, windowHeight);
+
+	// OpenGL options
+	glEnable(GL_DEPTH_TEST);
+
+	// Setup and compile our shaders
+
+	projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+
+
+	car = Drawable("mustang");
+	car2 = Drawable("mustang");
 
 	glutMainLoop();
 
