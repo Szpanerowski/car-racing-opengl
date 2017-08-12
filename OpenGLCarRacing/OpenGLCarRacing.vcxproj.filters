@@ -9,15 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\rendering">
-      <UniqueIdentifier>{3a545f58-8f7b-4ddc-8932-f85af537d5a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\rendering">
-      <UniqueIdentifier>{f48a6472-bc85-4c1d-8a52-5c3c46903a17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\input">
       <UniqueIdentifier>{108688ea-435c-46e4-86f7-9e77f08a23b2}</UniqueIdentifier>
@@ -25,36 +19,102 @@
     <Filter Include="Source Files\input">
       <UniqueIdentifier>{fe1c0ab1-f460-4e35-a59e-5636bace6166}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\drawing">
+      <UniqueIdentifier>{3a545f58-8f7b-4ddc-8932-f85af537d5a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\drawing">
+      <UniqueIdentifier>{f48a6472-bc85-4c1d-8a52-5c3c46903a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\models">
+      <UniqueIdentifier>{5be42c3b-39b6-4260-80e5-3109e969d771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\models\car">
+      <UniqueIdentifier>{f3f6f08c-b5b5-491a-8ce8-0bf8d1823dfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\models\controllers">
+      <UniqueIdentifier>{d8591502-6be2-45fa-b524-a149523bdbc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\models\physics">
+      <UniqueIdentifier>{2a96f724-4254-4216-9bf0-3daf4d3a7ad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\models">
+      <UniqueIdentifier>{526eddc2-949e-4406-a06c-147721807193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\models\car">
+      <UniqueIdentifier>{b09f82e1-abcd-4087-a900-0e85b71cecf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\models\controllers">
+      <UniqueIdentifier>{8bfa97e2-90d0-49fa-a0c9-fcfa33bed43d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\models\physics">
+      <UniqueIdentifier>{003628a5-6bd3-4136-bd89-eeff940cdad7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rendering\RaceFrameRenderer.cpp">
-      <Filter>Source Files\rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="input\InputHandler.cpp">
+    <ClCompile Include="sources\input\InputHandler.cpp">
       <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\drawing\RaceFrameRenderer.cpp">
+      <Filter>Source Files\drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\controllers\ComputerRaceCarController.cpp">
+      <Filter>Source Files\models\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\controllers\PlayerRaceCarController.cpp">
+      <Filter>Source Files\models\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\controllers\RaceCarController.cpp">
+      <Filter>Source Files\models\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\physics\PhysicalModel.cpp">
+      <Filter>Source Files\models\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\car\RaceCar.cpp">
+      <Filter>Source Files\models\car</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\car\RaceCarFactory.cpp">
+      <Filter>Source Files\models\car</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="rendering\FrameRenderer.h">
-      <Filter>Header Files\rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="rendering\RaceFrameRenderer.h">
-      <Filter>Header Files\rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="visuals\RacingCar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="visuals\VisualObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="models\controllers\CarController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="input\InputHandler.h">
+    <ClInclude Include="sources\input\InputHandler.h">
       <Filter>Header Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\drawing\FrameRenderer.h">
+      <Filter>Header Files\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\drawing\RaceFrameRenderer.h">
+      <Filter>Header Files\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\drawing\VisualObject.h">
+      <Filter>Header Files\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\drawing\FrameUpdateableObject.h">
+      <Filter>Header Files\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\controllers\ComputerRaceCarController.h">
+      <Filter>Header Files\models\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\controllers\PlayerRaceCarController.h">
+      <Filter>Header Files\models\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\physics\PhysicalModel.h">
+      <Filter>Header Files\models\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\controllers\RaceCarController.h">
+      <Filter>Header Files\models\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\car\RaceCar.h">
+      <Filter>Header Files\models\car</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\car\RaceCarFactory.h">
+      <Filter>Header Files\models\car</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\physics\Rotation.h">
+      <Filter>Header Files\models\physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,8 +6,8 @@
 
 #include <cstdio>
 
-#include "rendering/FrameRenderer.h"
-#include "rendering/RaceFrameRenderer.h"
+#include "drawing/FrameRenderer.h"
+#include "drawing/RaceFrameRenderer.h"
 #include "input/InputHandler.h"
 
 const char* windowTitle = "Super Ultra Car Racing";
@@ -18,9 +18,14 @@ const int windowPositionY = 100;
 
 void renderFrame() {
 
-	static FrameRenderer* frameRenderer = new RaceFrameRenderer();
+	/*static FrameRenderer* frameRenderer = new RaceFrameRenderer();
 
-	frameRenderer->renderFrame();
+	frameRenderer->renderFrame();*/
+
+	glClearColor(1, 0, 1, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glutSwapBuffers();
 }
 
 void initializeGLUT(int *pargc, char* argv[]) {

@@ -2,8 +2,7 @@
 
 #include <gl/freeglut.h>
 
-RaceFrameRenderer::RaceFrameRenderer()
-{
+RaceFrameRenderer::RaceFrameRenderer() {
 }
 
 void RaceFrameRenderer::renderFrame() {

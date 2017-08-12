@@ -71,13 +71,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)/sources/;$(ProjectDir)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)/sources</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -149,17 +150,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="input\InputHandler.cpp" />
+    <ClCompile Include="sources\models\physics\PhysicalModel.cpp" />
+    <ClCompile Include="sources\models\car\RaceCar.cpp" />
+    <ClCompile Include="sources\models\controllers\ComputerRaceCarController.cpp" />
+    <ClCompile Include="sources\models\controllers\PlayerRaceCarController.cpp" />
+    <ClCompile Include="sources\models\car\RaceCarFactory.cpp" />
+    <ClCompile Include="sources\input\InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="rendering\RaceFrameRenderer.cpp" />
+    <ClCompile Include="sources\drawing\RaceFrameRenderer.cpp" />
+    <ClCompile Include="sources\models\controllers\RaceCarController.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="input\InputHandler.h" />
-    <ClInclude Include="models\controllers\CarController.h" />
-    <ClInclude Include="rendering\RaceFrameRenderer.h" />
-    <ClInclude Include="rendering\FrameRenderer.h" />
-    <ClInclude Include="visuals\RacingCar.h" />
-    <ClInclude Include="visuals\VisualObject.h" />
+    <ClInclude Include="sources\drawing\FrameUpdateableObject.h" />
+    <ClInclude Include="sources\models\physics\PhysicalModel.h" />
+    <ClInclude Include="sources\models\controllers\ComputerRaceCarController.h" />
+    <ClInclude Include="sources\models\controllers\PlayerRaceCarController.h" />
+    <ClInclude Include="sources\models\car\RaceCarFactory.h" />
+    <ClInclude Include="sources\input\InputHandler.h" />
+    <ClInclude Include="sources\models\controllers\RaceCarController.h" />
+    <ClInclude Include="sources\drawing\RaceFrameRenderer.h" />
+    <ClInclude Include="sources\drawing\FrameRenderer.h" />
+    <ClInclude Include="sources\models\car\RaceCar.h" />
+    <ClInclude Include="sources\drawing\VisualObject.h" />
+    <ClInclude Include="sources\models\physics\Rotation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
