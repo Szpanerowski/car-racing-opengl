@@ -21,25 +21,14 @@ const int windowPositionY = 100;
 
 glm::mat4 projection;
 
-
 // Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
-Drawable car;
-Drawable car2;
 
 void displayFrame() {
 
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	car.scale(0.4f, 0.4f, 0.4f);
-	car.translate(-2.0f, 0, 0);
-	car.draw(camera.GetViewMatrix(), projection);
-
-	car2.scale(0.4f, 0.4f, 0.4f);
-	car2.translate(2.0f, 0, 0);
-	car2.draw(camera.GetViewMatrix(), projection);
 
 	//swap buffers
 	glutSwapBuffers();
@@ -96,10 +85,6 @@ int main(int argc, char* argv[]) {
 	// Setup and compile our shaders
 
 	projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
-
-
-	car = Drawable("mustang");
-	car2 = Drawable("mustang");
 
 	glutMainLoop();
 
