@@ -9,6 +9,12 @@
 #include "drawing/FrameRenderer.h"
 #include "drawing/RaceFrameRenderer.h"
 #include "input/InputHandler.h"
+#include "Shader.h"
+#include "Camera.h"
+#include "Model.h"
+#include "Drawable.h"
+
+#include "SOIL2/SOIL2.h"
 
 const char* windowTitle = "Super Ultra Car Racing";
 const int windowWidth = 800;
@@ -17,10 +23,6 @@ const int windowPositionX = 300;
 const int windowPositionY = 100;
 
 void renderFrame() {
-
-	/*static FrameRenderer* frameRenderer = new RaceFrameRenderer();
-
-	frameRenderer->renderFrame();*/
 
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -59,12 +61,12 @@ void initializeInputHandler() {
 	InputHandler::ensureInitialized();
 }
 
+
 int main(int argc, char* argv[]) {
 
 	initializeGLUT(&argc, argv);
 	initializeGLEW();
 
-	initializeInputHandler();
-
 	glutMainLoop();
+
 }

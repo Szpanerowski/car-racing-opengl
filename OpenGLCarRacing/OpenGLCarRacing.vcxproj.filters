@@ -50,7 +50,7 @@
       <UniqueIdentifier>{003628a5-6bd3-4136-bd89-eeff940cdad7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup> 
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -115,6 +115,25 @@
     </ClInclude>
     <ClInclude Include="sources\models\physics\Rotation.h">
       <Filter>Header Files\models\physics</Filter>
+    <ClCompile Include="objloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
