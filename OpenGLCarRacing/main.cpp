@@ -22,10 +22,18 @@ const int windowHeight = 600;
 const int windowPositionX = 300;
 const int windowPositionY = 100;
 
+glm::mat4 projection;
+
+// Camera
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Drawable car;
+
 void renderFrame() {
 
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	car.draw(camera.GetViewMatrix(), projection);
 
 	glutSwapBuffers();
 }
@@ -66,6 +74,19 @@ int main(int argc, char* argv[]) {
 
 	initializeGLUT(&argc, argv);
 	initializeGLEW();
+
+	glViewport(0, 0, windowWidth, windowHeight);
+	glewExperimental = GL_TRUE;
+	if (GLEW_OK != glewInit())
+	{
+		std::cout << "Failed to initialize GLEW" << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	glViewport(0, 0, windowWidth, windowHeight);
+	glEnable(GL_DEPTH_TEST);
+	projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+	car = Drawable("mustang");
 
 	glutMainLoop();
 
