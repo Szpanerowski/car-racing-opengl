@@ -10,7 +10,7 @@ Ke 0.087715 0.087715 0.087715
 Ni 1.000000
 d 1.000000
 illum 5
-refl C:\\Volumes\\TEXTURE_CD\\TEXTURE\\REFLECTION\\SPHEREMAPS\\SHINYBALL_REF.JPG
+refl glass_dif.png
 
 newmtl Black
 Ns 243.137255
@@ -61,7 +61,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 7
-map_Kd \Users\RobFox\Desktop\blender_works\car modeling\pics\Amber Front Side Marker lens.jpg
+map_Kd glass_dif.png
 
 newmtl Blinker_F
 Ns 749.019608
@@ -72,7 +72,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 7
-map_Kd \Users\RobFox\Desktop\blender_works\car modeling\pics\Amber Front Side Marker lens.jpg
+map_Kd glass_dif.png
 
 newmtl Cap
 Ns 94.117647
@@ -93,7 +93,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd \Users\RobFox\Desktop\blender_works\car modeling\General_Lee\General_Lee_wheels\Shelby_cap_sticker.png
+map_Kd glass_dif.png
 
 newmtl CarPaint
 Ns 356.862745
@@ -114,8 +114,7 @@ Ke 0.061401 0.061401 0.061401
 Ni 1.000000
 d 1.000000
 illum 3
-map_Ke C:\\Volumes\\TEXTURE_CD\\TEXTURE\\REFLECTION\\SPHEREMAPS\\SHINYBALL_REF.JPG
-refl C:\\Volumes\\TEXTURE_CD\\TEXTURE\\REFLECTION\\SPHEREMAPS\\SHINYBALL_REF.JPG
+map_Ke glass_dif.png
 
 newmtl Chrome_light
 Ns 749.019608
@@ -126,8 +125,7 @@ Ke 0.074558 0.074558 0.074558
 Ni 1.000000
 d 1.000000
 illum 5
-map_Ke C:\\Volumes\\TEXTURE_CD\\TEXTURE\\REFLECTION\\SPHEREMAPS\\SHINYBALL_REF.JPG
-refl C:\\Volumes\\TEXTURE_CD\\TEXTURE\\REFLECTION\\SPHEREMAPS\\SHINYBALL_REF.JPG
+map_Ke glass_dif.png
 
 newmtl Grey
 Ns 154.901961
@@ -228,8 +226,7 @@ Ke 0.024560 0.024560 0.024560
 Ni 1.000000
 d 1.000000
 illum 5
-map_Ke C:\\Volumes\\TEXTURE_CD\\TEXTURE\\REFLECTION\\SPHEREMAPS\\SHINYBALL_REF.JPG
-refl C:\\Volumes\\TEXTURE_CD\\TEXTURE\\REFLECTION\\SPHEREMAPS\\SHINYBALL_REF.JPG
+map_Ke glass_dif.png
 
 newmtl Tire
 Ns 94.117647
@@ -240,8 +237,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 5
-map_Kd \Users\RobFox\Desktop\blender_works\car modeling\General_Lee\General_Lee_wheels\bfg_radial_lettering.png
-map_Bump \\Users\\RobFox\\Desktop\\blender_works\\car modeling\\General_Lee\\General_Lee_wheels\\bfg_radial_lettering.png
+map_Kd glass_dif.png
 
 newmtl Window
 Ns 586.274510

@@ -13,6 +13,7 @@
 #include "Camera.h"
 #include "Model.h"
 #include "Drawable.h"
+#include "TerrainLoader.h"
 
 #include "SOIL2/SOIL2.h"
 
@@ -27,13 +28,19 @@ glm::mat4 projection;
 // Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 Drawable car;
+Drawable grass;
+TerrainLoader terrain;
 
 void renderFrame() {
 
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	car.scale(0.5, 0.5, 0.5);
+	car.translate(0, -1, 0);
 	car.draw(camera.GetViewMatrix(), projection);
+
+	terrain.draw(camera.GetViewMatrix(), projection);
 
 	glutSwapBuffers();
 }
@@ -86,7 +93,12 @@ int main(int argc, char* argv[]) {
 	glViewport(0, 0, windowWidth, windowHeight);
 	glEnable(GL_DEPTH_TEST);
 	projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
-	car = Drawable("mustang");
+	glPolygonMode(GL_FRONT, GL_FILL);
+	glPolygonMode(GL_BACK, GL_FILL);
+	car = Drawable("car");
+	grass = Drawable("terrain");
+	terrain = TerrainLoader(5, 5, grass);
+
 
 	glutMainLoop();
 

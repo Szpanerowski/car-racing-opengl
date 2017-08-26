@@ -165,6 +165,7 @@
     <ClCompile Include="sources\models\controllers\RaceCarController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TerrainLoader.h" />
     <ClInclude Include="sources\drawing\FrameUpdateableObject.h" />
     <ClInclude Include="sources\models\physics\PhysicalModel.h" />
     <ClInclude Include="sources\models\controllers\ComputerRaceCarController.h" />
@@ -177,7 +178,6 @@
     <ClInclude Include="sources\models\car\RaceCar.h" />
     <ClInclude Include="sources\drawing\VisualObject.h" />
     <ClInclude Include="sources\models\physics\Rotation.h" />
-    <ClCompile Include="objloader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
