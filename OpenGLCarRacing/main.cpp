@@ -36,8 +36,8 @@ void renderFrame() {
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	car.translate(0, -0.5f, 0);
 	car.scale(0.5, 0.5, 0.5);
-	car.translate(0, -1, 0);
 	car.draw(camera.GetViewMatrix(), projection);
 
 	terrain.draw(camera.GetViewMatrix(), projection);
@@ -97,7 +97,7 @@ int main(int argc, char* argv[]) {
 	glPolygonMode(GL_BACK, GL_FILL);
 	car = Drawable("car");
 	grass = Drawable("terrain");
-	terrain = TerrainLoader(5, 5, grass);
+	terrain = TerrainLoader(1, 1, grass);
 
 
 	glutMainLoop();

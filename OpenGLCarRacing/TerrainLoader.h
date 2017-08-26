@@ -20,7 +20,9 @@ public:
 	}
 
 	void draw(glm::mat4 view, glm::mat4 projection) {
-		drawable.translate(-x / 2, -1, -z / 2);
+
+		drawable.translate(-x / 2, -0.5f, -z / 2);
+
 		for (int i = 0; i<x; i++)
 		{
 			for (int j = 0; j < z; j++)
