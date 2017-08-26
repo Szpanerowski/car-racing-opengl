@@ -28,7 +28,6 @@ glm::mat4 projection;
 // Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 Drawable car;
-Drawable grass;
 TerrainLoader terrain;
 
 void renderFrame() {
@@ -36,8 +35,6 @@ void renderFrame() {
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	car.translate(0, -0.5f, 0);
-	car.scale(0.5, 0.5, 0.5);
 	car.draw(camera.GetViewMatrix(), projection);
 
 	terrain.draw(camera.GetViewMatrix(), projection);
@@ -95,9 +92,14 @@ int main(int argc, char* argv[]) {
 	projection = glm::perspective(camera.GetZoom(), (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 	glPolygonMode(GL_FRONT, GL_FILL);
 	glPolygonMode(GL_BACK, GL_FILL);
+
 	car = Drawable("car");
-	grass = Drawable("terrain");
-	terrain = TerrainLoader(1, 1, grass);
+	car.translate(0, -0.5f, 0);
+	car.scale(0.5, 0.5, 0.5);
+
+	terrain = TerrainLoader(5, 5);
+
+
 
 
 	glutMainLoop();

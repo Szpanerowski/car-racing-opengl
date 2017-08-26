@@ -11,30 +11,31 @@ class TerrainLoader
 {
 public:
 	TerrainLoader() {};
-	TerrainLoader(int x, int z, Drawable drawable)
+	TerrainLoader(int x, int z)
 	{
 		this->x = x;
 		this->z = z;
-		this->drawable = drawable;
+
+		for (int i = -x / 2; i<x/2; i++)
+		{
+			for (int j = -z / 2; j < z/2; j++)
+			{
+				Drawable d = Drawable("terrain");
+				d.translate(i, -0.5, j);
+				vecTerrain.push_back(d);
+			}
+		}
 
 	}
 
 	void draw(glm::mat4 view, glm::mat4 projection) {
-
-		drawable.translate(-x / 2, -0.5f, -z / 2);
-
-		for (int i = 0; i<x; i++)
-		{
-			for (int j = 0; j < z; j++)
-			{
-				drawable.translate(0, 0, 1);
-				drawable.draw(view, projection);
-			}
-			drawable.translate(1, 0, -z);
+		for (int i = 0; i < vecTerrain.size(); i++) {
+			vecTerrain.at(i).draw(view, projection);
 		}
 	}
+
 private:
 	int x;
 	int z;
-	Drawable drawable;
+	vector <Drawable> vecTerrain;
 };

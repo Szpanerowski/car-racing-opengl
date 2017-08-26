@@ -56,65 +56,6 @@ public:
 		return glm::lookAt(this->position, this->position + this->front, this->up);
 	}
 
-	// Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
-	void ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime)
-	{
-		GLfloat velocity = this->movementSpeed * deltaTime;
-
-		if (direction == FORWARD)
-		{
-			this->position += this->front * velocity;
-		}
-
-		if (direction == BACKWARD)
-		{
-			this->position -= this->front * velocity;
-		}
-
-		if (direction == LEFT)
-		{
-			this->position -= this->right * velocity;
-		}
-
-		if (direction == RIGHT)
-		{
-			this->position += this->right * velocity;
-		}
-	}
-
-	// Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
-	void ProcessMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true)
-	{
-		xOffset *= this->mouseSensitivity;
-		yOffset *= this->mouseSensitivity;
-
-		this->yaw += xOffset;
-		this->pitch += yOffset;
-
-		// Make sure that when pitch is out of bounds, screen doesn't get flipped
-		if (constrainPitch)
-		{
-			if (this->pitch > 89.0f)
-			{
-				this->pitch = 89.0f;
-			}
-
-			if (this->pitch < -89.0f)
-			{
-				this->pitch = -89.0f;
-			}
-		}
-
-		// Update Front, Right and Up Vectors using the updated Eular angles
-		this->updateCameraVectors();
-	}
-
-	// Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
-	void ProcessMouseScroll(GLfloat yOffset)
-	{
-
-	}
-
 	GLfloat GetZoom()
 	{
 		return this->zoom;
