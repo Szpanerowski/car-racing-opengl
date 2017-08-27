@@ -94,13 +94,11 @@ int main(int argc, char* argv[]) {
 	glPolygonMode(GL_BACK, GL_FILL);
 
 	car = Drawable("car");
-	car.translate(0, -0.5f, 0);
+	car.translate(0, -0.5f, 1);
+	car.rotate(-45, 0, 1, 0);
 	car.scale(0.5, 0.5, 0.5);
 
-	terrain = TerrainLoader(5, 5);
-
-
-
+	terrain = TerrainLoader(15, 5);
 
 	glutMainLoop();
 
