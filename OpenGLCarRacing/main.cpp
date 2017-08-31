@@ -98,7 +98,7 @@ int main(int argc, char* argv[]) {
 	car.rotate(-45, 0, 1, 0);
 	car.scale(0.5, 0.5, 0.5);
 
-	terrain = TerrainLoader(15, 5);
+	terrain = TerrainLoader(15, 4);
 
 	glutMainLoop();
 
