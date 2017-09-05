@@ -35,12 +35,48 @@ void renderFrame() {
 	glClearColor(1, 0, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	camera = Camera (glm::vec3(0.0f, 0.0f, 3.0f));
+	//camera.rotate(1, 0);
+
 	car.draw(camera.GetViewMatrix(), projection);
 
 	terrain.draw(camera.GetViewMatrix(), projection);
 
 	glutSwapBuffers();
 }
+
+float xMove = 0;
+float speed = 0.01;
+float range = 20;
+void initializeDrawScene() 
+{
+	glClearColor(1, 0, 1, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if(xMove == 0)
+		camera.move(range, 2);
+	else
+		camera.move(-speed, 0);
+	car.draw(camera.GetViewMatrix(), projection);
+	terrain.draw(camera.GetViewMatrix(), projection);
+
+	glEnd();
+	glFlush();
+	glutSwapBuffers();
+
+	xMove += speed;
+
+	if (xMove < range)
+	{
+		//camera.rotate(0.1, 0);
+		glutPostRedisplay();
+	}
+	else
+	{
+		renderFrame();
+	}
+}
+
 
 void initializeGLUT(int *pargc, char* argv[]) {
 
@@ -98,7 +134,9 @@ int main(int argc, char* argv[]) {
 	car.rotate(-45, 0, 1, 0);
 	car.scale(0.5, 0.5, 0.5);
 
-	terrain = TerrainLoader(15, 4);
+	terrain = TerrainLoader(20, 20);
+
+	glutDisplayFunc(initializeDrawScene);
 
 	glutMainLoop();
 

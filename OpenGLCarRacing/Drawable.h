@@ -61,4 +61,5 @@ private:
 	Shader shader;
 	Model ourModel;
 	glm::mat4 model;
+	glm::mat4 viewMatrix;
 };

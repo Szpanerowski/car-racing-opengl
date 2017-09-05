@@ -53,8 +53,9 @@ public:
 	// Returns the view matrix calculated using Eular Angles and the LookAt Matrix
 	glm::mat4 GetViewMatrix()
 	{
-		return glm::lookAt(this->position, this->position + this->front, this->up);
+		return glm::lookAt(this->position, this->position + glm::vec3(0.0f, 0.0f, -1.0f), this->up);
 	}
+
 
 	GLfloat GetZoom()
 	{
@@ -69,6 +70,24 @@ public:
 	glm::vec3 GetFront()
 	{
 		return this->front;
+	}
+
+	void setPosition(glm::vec3 position)
+	{
+		this->position = position;
+	}
+
+	void move(float VerticalSpeed, float horizontalSpeed)
+	{
+		this->position -= this->front * VerticalSpeed;
+		this->position -= this->right * horizontalSpeed;
+	}
+
+	void rotate(GLfloat xOffset, GLfloat yOffset)
+	{
+		this->yaw += xOffset;
+		this->pitch += yOffset;
+		this->updateCameraVectors();
 	}
 
 private:

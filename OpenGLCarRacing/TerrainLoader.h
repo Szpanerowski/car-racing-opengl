@@ -24,9 +24,9 @@ public:
 	TerrainLoader() {};
 	TerrainLoader(int x, int z)
 	{
-		if (x >= 8)
+		if (x <= 8)
 			x = 8;
-		if (z >= 8)
+		if (z <= 8)
 			z = 8;
 
 		this->x = x;
