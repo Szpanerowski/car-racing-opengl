@@ -2,6 +2,8 @@
 #include "models/controllers/PlayerRaceCarController.h"
 #include "models/controllers/ComputerRaceCarController.h"
 
+using namespace glm;
+
 RaceCarFactory* RaceCarFactory::instance = nullptr;
 
 RaceCarFactory* RaceCarFactory::getInstance() {
@@ -14,23 +16,30 @@ RaceCarFactory* RaceCarFactory::getInstance() {
 
 RaceCarFactory::RaceCarFactory() {}
 
-RaceCar* RaceCarFactory::createPlayerRaceCar() {
+RaceCar* RaceCarFactory::createPlayerRaceCar(vec3 position) {
 	
-	RaceCar* raceCar = createRaceCar();
+	RaceCar* raceCar = createRaceCar(position);
 	RaceCarController* controller = new PlayerRaceCarController(raceCar);
 
+	raceCar->setController(controller);
+
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createOpponentRaceCar() {
+RaceCar* RaceCarFactory::createOpponentRaceCar(vec3 position) {
 	
-	RaceCar* raceCar = createRaceCar();
+	RaceCar* raceCar = createRaceCar(position);
 	RaceCarController* controller = new ComputerRaceCarController(raceCar);
 
+	raceCar->setController(controller);
+	
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createRaceCar() {
+RaceCar* RaceCarFactory::createRaceCar(vec3 position) {
 
-	return new RaceCar();
+	PhysicalModel* physicalModel = new PhysicalModel();
+	RaceCar* raceCar = new RaceCar(position, physicalModel);
+
+	return raceCar;
 }

@@ -1,6 +1,8 @@
 #include "RaceCar.h"
 #include "models/controllers/RaceCarController.h"
 
+#include <cstdio>
+
 using namespace glm;
 
 RaceCar::RaceCar() {

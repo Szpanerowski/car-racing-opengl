@@ -35,7 +35,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)/External Libraries/SOIL2/include;$(SolutionDir)/External Libraries/assimp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(StlIncludeDirectories);sources\scenes;sources\racing;sources\drawing;sources\models\physics;sources\models\controllers;sources\models\car;sources\input;sources\drawing\camera;sources\drawing\model;$(SolutionDir)/External Libraries/SOIL2/include;$(SolutionDir)/External Libraries/assimp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,6 +108,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(StlIncludeDirectories);sources\scenes;sources\racing;sources\drawing;sources\models\physics;sources\models\controllers;sources\models\car;sources\input;sources\drawing\camera;sources\drawing\model;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,7 +125,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)/External Libraries/assim/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(StlIncludeDirectories);sources\scenes;sources\racing;sources\drawing;sources\models\physics;sources\models\controllers;sources\models\car;sources\input;sources\drawing\camera;sources\drawing\model;$(SolutionDir)/External Libraries/assim/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +146,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(StlIncludeDirectories);sources\scenes;sources\racing;sources\drawing;sources\models\physics;sources\models\controllers;sources\models\car;sources\input;sources\drawing\camera;sources\drawing\model;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,6 +156,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sources\scenes\RaceScene.cpp" />
+    <ClCompile Include="sources\racing\Race.cpp" />
     <ClCompile Include="sources\models\physics\PhysicalModel.cpp" />
     <ClCompile Include="sources\models\car\RaceCar.cpp" />
     <ClCompile Include="sources\models\controllers\ComputerRaceCarController.cpp" />
@@ -161,10 +165,12 @@
     <ClCompile Include="sources\models\car\RaceCarFactory.cpp" />
     <ClCompile Include="sources\input\InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="sources\drawing\RaceFrameRenderer.cpp" />
     <ClCompile Include="sources\models\controllers\RaceCarController.cpp" />
+    <ClCompile Include="sources\scenes\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sources\scenes\RaceScene.h" />
+    <ClInclude Include="sources\racing\Race.h" />
     <ClInclude Include="sources\drawing\FrameUpdateableObject.h" />
     <ClInclude Include="sources\models\physics\PhysicalModel.h" />
     <ClInclude Include="sources\models\controllers\ComputerRaceCarController.h" />
@@ -172,19 +178,17 @@
     <ClInclude Include="sources\models\car\RaceCarFactory.h" />
     <ClInclude Include="sources\input\InputHandler.h" />
     <ClInclude Include="sources\models\controllers\RaceCarController.h" />
-    <ClInclude Include="sources\drawing\RaceFrameRenderer.h" />
-    <ClInclude Include="sources\drawing\FrameRenderer.h" />
     <ClInclude Include="sources\models\car\RaceCar.h" />
     <ClInclude Include="sources\drawing\VisualObject.h" />
     <ClInclude Include="sources\models\physics\Rotation.h" />
-    <ClCompile Include="objloader.cpp" />
+    <ClInclude Include="sources\scenes\Scene.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Drawable.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="sources\drawing\camera\Camera.h" />
+    <ClInclude Include="sources\drawing\Drawable.h" />
+    <ClInclude Include="sources\drawing\model\Mesh.h" />
+    <ClInclude Include="sources\drawing\model\Model.h" />
+    <ClInclude Include="sources\drawing\model\Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

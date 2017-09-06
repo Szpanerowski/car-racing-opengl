@@ -1,9 +1,8 @@
 #pragma once
-#include "Shader.h"
-#include "Model.h"
+#include "drawing/model/Shader.h"
+#include "drawing/model/Model.h"
 
-
-using namespace std;
+#include "glm/gtc/type_ptr.hpp"
 
 
 class Drawable
@@ -12,9 +11,9 @@ public:
 
 	Drawable() {}
 
-	Drawable(string name) {
+	Drawable(std::string name) {
 
-		string path = "res/models/" + name + ".obj";
+		std::string path = "res/models/" + name + ".obj";
 		ourModel = Model(path);
 		shader = Shader("res/shaders/modelLoading.vs", "res/shaders/modelLoading.frag");
 	}
