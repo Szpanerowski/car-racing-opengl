@@ -14,7 +14,7 @@ public:
 
 	Drawable(string name) {
 
-		string path = "res/models/" + name + ".obj";
+		string path = "res/models/" + name;
 		ourModel = Model(path);
 		shader = Shader("res/shaders/modelLoading.vs", "res/shaders/modelLoading.frag");
 	}

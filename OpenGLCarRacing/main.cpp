@@ -32,10 +32,12 @@ TerrainLoader terrain;
 
 void renderFrame() {
 
-	glClearColor(1, 0, 1, 1);
+	glClearColor(1, 1, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	camera = Camera (glm::vec3(0.0f, 0.0f, 3.0f));
+	camera.move(0, 5);
+	camera.rotate(90, 0);
 	//camera.rotate(1, 0);
 
 	car.draw(camera.GetViewMatrix(), projection);
@@ -46,11 +48,11 @@ void renderFrame() {
 }
 
 float xMove = 0;
-float speed = 0.01;
+float speed = 0.07;
 float range = 20;
 void initializeDrawScene() 
 {
-	glClearColor(1, 0, 1, 1);
+	glClearColor(1, 1, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	if(xMove == 0)
@@ -129,7 +131,7 @@ int main(int argc, char* argv[]) {
 	glPolygonMode(GL_FRONT, GL_FILL);
 	glPolygonMode(GL_BACK, GL_FILL);
 
-	car = Drawable("car");
+	car = Drawable("car.obj");
 	car.translate(0, -0.5f, 1);
 	car.rotate(-45, 0, 1, 0);
 	car.scale(0.5, 0.5, 0.5);

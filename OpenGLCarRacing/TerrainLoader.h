@@ -43,7 +43,7 @@ public:
 			{
 				//rysowanie drogi na krawedziach
 				if (i == 2 || i == x-4 ||  j==2 || j==z-4) {
-					Drawable d = Drawable("road");
+					Drawable d = Drawable("road.obj");
 					//d.scale(0.1, 1, 0.1);
 					d.translate(i, -0.5, j);
 					vecTerrain.push_back(d);
@@ -51,7 +51,7 @@ public:
 				}
 				//rysowanie trawy na reszcie pola
 				else { 
-					Drawable d = Drawable("terrain");
+					Drawable d = Drawable("terrain.obj");
 					//d.scale(0.1, 1, 0.1);
 					d.translate(i, -0.5, j);
 					vecTerrain.push_back(d);
