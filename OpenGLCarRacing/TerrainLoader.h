@@ -42,7 +42,7 @@ public:
 			for (int j = 0; j < z; j += 2)
 			{
 				//rysowanie drogi na krawedziach
-				if (i == 2 || i == x-4 ||  j==2 || j==z-4) {
+				if ((i == 2 || i == x-4 ||  j==2 || j==z-4) && j!=0 && i!=0) {
 					Drawable d = Drawable("road.obj");
 					//d.scale(0.1, 1, 0.1);
 					d.translate(i, -0.5, j);

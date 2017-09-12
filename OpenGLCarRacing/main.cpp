@@ -131,10 +131,10 @@ int main(int argc, char* argv[]) {
 	glPolygonMode(GL_FRONT, GL_FILL);
 	glPolygonMode(GL_BACK, GL_FILL);
 
-	car = Drawable("car.obj");
-	car.translate(0, -0.5f, 1);
-	car.rotate(-45, 0, 1, 0);
-	car.scale(0.5, 0.5, 0.5);
+	car = Drawable("car2.obj");
+	car.translate(2.5, -0.5f, 2.5);
+	car.rotate(-0.5 * 3.14, 0, 1, 0);
+	//car.scale(0.4, 0.4, 0.4);
 
 	terrain = TerrainLoader(20, 20);
 
