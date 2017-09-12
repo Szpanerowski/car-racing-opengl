@@ -56,6 +56,6 @@ mat4 Camera::calculateViewMatrix()
 		vec3 focusPosition = followedObject->getPosition();
 		vec3 cameraPosition = focusPosition + vec3(0, 0, -1);
 
-		return lookAt(cameraPosition, focusPosition, vec3(0, 0, 1));
+		return lookAt(cameraPosition, focusPosition, vec3(0, 1, 0));
 	}
 }
