@@ -1,20 +1,24 @@
 #pragma once
 
-#include "drawing/VisualObject.h"
-#include "drawing/FrameUpdateableObject.h"
+#include "drawing/RenderedObject.h"
+#include "drawing/UpdatedObject.h"
+#include "drawing/Drawable.h"
 #include "models/physics/PhysicalModel.h"
+
+#include "drawing/camera/CameraFollowedObject.h"
 
 #include "glm/vec3.hpp"
 
 class RaceCarController;
 
-class RaceCar : public VisualObject, public FrameUpdateableObject {
+class RaceCar : public RenderedObject, public UpdatedObject, public CameraFollowedObject {
 
 private:
 
 	RaceCarController* controller;
 	PhysicalModel* physicalModel;
 
+	Drawable* carModel;
 	glm::vec3 position;
 
 public:
@@ -26,7 +30,11 @@ public:
 	void accelerate(glm::vec3 acceleration);
 
 	virtual void frameUpdate();
-	virtual void render();
+	virtual void render(glm::mat4 view, glm::mat4 projection);
+
+	virtual glm::vec3 getPosition();
+	virtual glm::vec3 getFaceVector();
 
 	void setController(RaceCarController* controller);
+	void setModel(Drawable* drawable);
 };

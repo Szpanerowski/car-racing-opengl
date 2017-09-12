@@ -1,102 +1,42 @@
 #pragma once
 
-// Std. Includes
-#include <vector>
-
-// GL Includes
-#define GLEW_STATIC
 #include "GL/glew.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-// Default camera values
-const GLfloat YAW = -90.0f;
-const GLfloat PITCH = 0.0f;
-const GLfloat SPEED = 6.0f;
-const GLfloat SENSITIVTY = 0.25f;
-const GLfloat ZOOM = 45.0f;
+#include "drawing/UpdatedObject.h"
+#include "drawing/camera/CameraFollowedObject.h"
 
-// An abstract camera class that processes input and calculates the corresponding Eular Angles, Vectors and Matrices for use in OpenGL
-class Camera
+class Camera : UpdatedObject
 {
-public:
-	// Constructor with vectors
-	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH) : front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVTY), zoom(ZOOM)
-	{
-		this->position = position;
-		this->worldUp = up;
-		this->yaw = yaw;
-		this->pitch = pitch;
-		this->updateCameraVectors();
-	}
-
-	// Constructor with scalar values
-	Camera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat upX, GLfloat upY, GLfloat upZ, GLfloat yaw, GLfloat pitch)
-		: front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVTY), zoom(ZOOM)
-	{
-		this->position = glm::vec3(posX, posY, posZ);
-		this->worldUp = glm::vec3(upX, upY, upZ);
-		this->yaw = yaw;
-		this->pitch = pitch;
-		this->updateCameraVectors();
-	}
-
-	// Returns the view matrix calculated using Eular Angles and the LookAt Matrix
-	glm::mat4 GetViewMatrix()
-	{
-		return glm::lookAt(this->position, this->position + this->front, this->up);
-	}
-
-	// Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
-	void ProcessMouseScroll(GLfloat yOffset)
-	{
-
-	}
-
-	GLfloat GetZoom()
-	{
-		return this->zoom;
-	}
-
-	glm::vec3 GetPosition()
-	{
-		return this->position;
-	}
-
-	glm::vec3 GetFront()
-	{
-		return this->front;
-	}
-
 private:
-	// Camera Attributes
+
 	glm::vec3 position;
-	glm::vec3 front;
-	glm::vec3 up;
-	glm::vec3 right;
-	glm::vec3 worldUp;
+	glm::vec3 focus;
+	glm::vec3 nose;
 
-	// Eular Angles
-	GLfloat yaw;
-	GLfloat pitch;
+	CameraFollowedObject* followedObject;
 
-	// Camera options
-	GLfloat movementSpeed;
-	GLfloat mouseSensitivity;
-	GLfloat zoom;
+	float fovy;
+	float aspect;
+	float nearPlane;
+	float farPlane;
 
-	// Calculates the front vector from the Camera's (updated) Eular Angles
-	void updateCameraVectors()
-	{
-		// Calculate the new Front vector
-		glm::vec3 front;
-		front.x = cos(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
-		front.y = sin(glm::radians(this->pitch));
-		front.z = sin(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
-		this->front = glm::normalize(front);
-		// Also re-calculate the Right and Up vector
-		this->right = glm::normalize(glm::cross(this->front, this->worldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
-		this->up = glm::normalize(glm::cross(this->right, this->front));
-	}
+	glm::mat4 viewMatrix;
+	glm::mat4 projectionMatrix;
+
+	Camera(float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 1.0f);
+
+	glm::mat4 calculateViewMatrix();
+
+public:
+
+	Camera(glm::vec3 position, glm::vec3 focus, glm::vec3 nose, float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 1.0f);
+	Camera(CameraFollowedObject* followedObject, float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 1.0f);
+
+	glm::mat4 getViewMatrix();
+	glm::mat4 getProjectionMatrix();
+
+	virtual void frameUpdate();
 };

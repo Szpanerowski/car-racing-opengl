@@ -6,11 +6,7 @@ Race::Race(int opponents, int laps, bool computerOnly) {
 
 	this->opponentsCount = opponents;
 	this->lapsCount = laps;
-
-	if (!computerOnly) {
-
-		;
-	}
+	this->computerOnly = computerOnly;
 }
 
 int Race::getOpponentsCount() {

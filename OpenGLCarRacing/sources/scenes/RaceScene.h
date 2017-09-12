@@ -18,7 +18,7 @@ private:
 
 public:
 
-	RaceScene(Race* race);
+	RaceScene(Race* race, int windowWidth, int windowHeight);
 
 	virtual void update();
 	virtual void render();

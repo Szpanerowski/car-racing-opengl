@@ -14,9 +14,9 @@ PlayerRaceCarController::PlayerRaceCarController(RaceCar* raceCar)
 void PlayerRaceCarController::frameUpdate() {
 
 	if (driveForward())
-		getRaceCar()->accelerate(vec3(0, 0, 1));
+		getRaceCar()->accelerate(vec3(0, 0, 0.001f));
 	else if (driveBackward())
-		getRaceCar()->accelerate(vec3(0, 0, -1));
+		getRaceCar()->accelerate(vec3(0, 0, -0.001f));
 }
 
 bool PlayerRaceCarController::driveForward() {

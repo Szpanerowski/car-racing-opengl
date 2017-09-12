@@ -67,6 +67,7 @@
       <Filter>sources\scenes</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sources\drawing\camera\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\scenes\RaceScene.h">
@@ -74,9 +75,6 @@
     </ClInclude>
     <ClInclude Include="sources\racing\Race.h">
       <Filter>sources\racing</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\drawing\FrameUpdateableObject.h">
-      <Filter>sources\drawing</Filter>
     </ClInclude>
     <ClInclude Include="sources\models\physics\PhysicalModel.h">
       <Filter>sources\models\physics</Filter>
@@ -99,9 +97,6 @@
     <ClInclude Include="sources\models\car\RaceCar.h">
       <Filter>sources\models\car</Filter>
     </ClInclude>
-    <ClInclude Include="sources\drawing\VisualObject.h">
-      <Filter>sources\drawing</Filter>
-    </ClInclude>
     <ClInclude Include="sources\models\physics\Rotation.h">
       <Filter>sources\models\physics</Filter>
     </ClInclude>
@@ -123,5 +118,12 @@
     <ClInclude Include="sources\drawing\model\Shader.h">
       <Filter>sources\drawing\model</Filter>
     </ClInclude>
+    <ClInclude Include="sources\drawing\RenderedObject.h">
+      <Filter>sources\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\drawing\UpdatedObject.h">
+      <Filter>sources\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h" />
   </ItemGroup>
 </Project>

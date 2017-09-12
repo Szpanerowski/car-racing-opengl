@@ -2,9 +2,9 @@
 
 #include "glm/vec3.hpp"
 #include "models/physics/Rotation.h"
-#include "drawing/FrameUpdateableObject.h"
+#include "drawing/UpdatedObject.h"
 
-class PhysicalModel : public FrameUpdateableObject
+class PhysicalModel : public UpdatedObject
 {
 private:
 	glm::vec3 currentAcceleration;

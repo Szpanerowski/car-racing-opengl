@@ -1,50 +1,75 @@
 #pragma once
+
 #include "drawing/model/Shader.h"
 #include "drawing/model/Model.h"
+#include "drawing/camera/CameraFollowedObject.h"
 
 #include "glm/gtc/type_ptr.hpp"
 
-
-class Drawable
+class Drawable : public CameraFollowedObject
 {
-public:
 
-	Drawable() {}
+private:
 
-	Drawable(std::string name) {
+	Shader shader;
+	Model ourModel;
 
-		std::string path = "res/models/" + name + ".obj";
-		ourModel = Model(path);
-		shader = Shader("res/shaders/modelLoading.vs", "res/shaders/modelLoading.frag");
+	glm::vec3 position;
+	glm::vec3 rotation;
+
+	glm::mat4 calculateModelMatrix() {
+
+		glm::mat4 model;
+		rotation[0];
+		model = glm::rotate(model, glm::radians(rotation.x), glm::vec3(1, 0, 0));
+		model = glm::rotate(model, glm::radians(rotation.y), glm::vec3(0, 1, 0));
+		model = glm::rotate(model, glm::radians(rotation.z), glm::vec3(0, 0, 1));
+
+		model = glm::translate(model, position);
+
+		return model;
 	}
 
-	void draw(glm::mat4 view, glm::mat4 projection)
-	{
+public:
+
+	Drawable() {
+	
+		this->position = glm::vec3(0, 0, 0);
+		this->rotation = glm::vec3(0, 0, 0);
+	}
+
+	Drawable(std::string name)
+		: Drawable() {
+
+		std::string path = "resources/models/" + name + ".obj";
+		ourModel = Model(path);
+		shader = Shader("resources/shaders/modelLoading.vs", "resources/shaders/modelLoading.frag");
+	}
+
+	void draw(glm::mat4 view, glm::mat4 projection) {
 		shader.Use();
 
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
 		// Draw the loaded model
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(calculateModelMatrix()));
 		ourModel.Draw(shader);
 	}
 
-	void scale(float x, float y, float z)
-	{
-		model = glm::scale(model, glm::vec3(x, y, z));
+	void move(glm::vec3 vector) {
+
+		position += vector;
 	}
 
-	void rotate(float angle, float x, float y, float z)
-	{
-		model = glm::rotate(model, angle, glm::vec3(x, y, z));
+	virtual glm::vec3 getPosition() {
+		return this->position;
 	}
 
-	void translate(float x, float y, float z)
-	{
-		model = glm::translate(model, glm::vec3(x, y, z));
-	}
+	virtual glm::vec3 getFaceVector() {
 
+		return glm::vec3(0, 0, 1);
+	}
 
 	Model getModel()
 	{
@@ -55,9 +80,4 @@ public:
 	{
 		return shader;
 	}
-
-private:
-	Shader shader;
-	Model ourModel;
-	glm::mat4 model;
 };

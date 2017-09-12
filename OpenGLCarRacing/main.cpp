@@ -19,9 +19,9 @@ void initializeGLUT(int *pargc, char* argv[]) {
 
 	glutInit(pargc, argv);
 	
-	glutInitContextVersion(4, 0);
+	/*glutInitContextVersion(4, 0);
 	glutInitContextFlags(GLUT_FORWARD_COMPATIBLE);
-	glutInitContextProfile(GLUT_CORE_PROFILE);
+	glutInitContextProfile(GLUT_CORE_PROFILE);*/
 
 	// This option is set in order to execute instructions after glutMainLoop in main function
 	// Default behaviour of original GLUT library was exiting the whole program after closing the game window
@@ -57,7 +57,7 @@ void initializeInputHandler() {
 void initializeRaceGame() {
 
 	Race* race = new Race(0, 0);
-	RaceScene* raceScene = new RaceScene(race);
+	RaceScene* raceScene = new RaceScene(race, windowWidth, windowHeight);
 
 	raceScene->load();
 }

@@ -25,18 +25,36 @@ RaceCar::RaceCar(vec3 position, PhysicalModel* physicalModel)
 void RaceCar::accelerate(vec3 acceleration) {
 
 	physicalModel->applyForce(acceleration, vec3(0, 0, 0));
+	printf("Accelerating by x = %f, y = %f, z = %f\n", acceleration.x, acceleration.y, acceleration.z);
 }
 
 void RaceCar::frameUpdate() {
 
 	controller->frameUpdate();
+	physicalModel->frameUpdate();
 
 	vec3 movementVector = physicalModel->getCurrentMovement();
+	carModel->move(movementVector);
 }
 
-void RaceCar::render() {
+void RaceCar::render(mat4 view, mat4 projection) {
+	carModel->draw(view, projection);
+}
+
+vec3 RaceCar::getPosition()
+{
+	return carModel->getPosition();
+}
+
+vec3 RaceCar::getFaceVector()
+{
+	return carModel->getFaceVector();
 }
 
 void RaceCar::setController(RaceCarController* controller) {
 	this->controller = controller;
+}
+
+void RaceCar::setModel(Drawable* carModel) {
+	this->carModel = carModel;
 }

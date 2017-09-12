@@ -18,6 +18,7 @@ void PhysicalModel::applyForce(vec3 forceVector, vec3 pivotShift) {
 void PhysicalModel::frameUpdate() {
 
 	currentMovement += currentAcceleration;
+	currentAcceleration = -0.1f * currentMovement;
 }
 
 vec3 PhysicalModel::getCurrentMovement() {

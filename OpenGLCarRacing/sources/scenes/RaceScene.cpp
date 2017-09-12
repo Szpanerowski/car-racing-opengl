@@ -6,15 +6,16 @@
 
 using namespace glm;
 
-RaceScene::RaceScene(Race* race) {
+RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 
 	this->race = race;
 
-	if (race->isComputerOnly()) {
+	if (!race->isComputerOnly()) {
 
 		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar(vec3(0, 0, 0));
 		
 		raceCars.push_back(playerCar);
+		camera = new Camera(vec3(0, 0, 3), vec3(0, 0, 0), vec3(0, 0, 1), (float)windowWidth / windowHeight);
 	}
 }
 
@@ -28,8 +29,13 @@ void RaceScene::update() {
 
 void RaceScene::render() {
 
-	glClearColor(1, 1, 1, 1);
+	glClearColor(0.5, 0.5, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	for (RaceCar* raceCar : raceCars) {
+
+		raceCar->render(camera->getViewMatrix(), camera->getProjectionMatrix());
+	}
 
 	glutSwapBuffers();
 	glutPostRedisplay();
