@@ -8,7 +8,7 @@ using namespace glm;
 
 RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 
-	this->terrainLoader = new TerrainLoader();
+	this->terrainLoader = new TerrainLoader(20,20);
 	this->race = race;
 
 	if (!race->isComputerOnly()) {
