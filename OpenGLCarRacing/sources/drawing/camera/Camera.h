@@ -26,13 +26,14 @@ private:
 	glm::mat4 viewMatrix;
 	glm::mat4 projectionMatrix;
 
-	Camera(float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 1.0f);
+	Camera(float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 100.0f);
 
 	glm::mat4 calculateViewMatrix();
+	glm::mat4 createProjectionMatrix();
 
 public:
 
-	Camera(glm::vec3 position, glm::vec3 focus, glm::vec3 nose, float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 1.0f);
+	Camera(glm::vec3 position, glm::vec3 focus, glm::vec3 nose, float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 100.0f);
 	Camera(CameraFollowedObject* followedObject, float aspect, float fovy = glm::radians(30.0f), float near = 1.0f, float far = 1.0f);
 
 	glm::mat4 getViewMatrix();

@@ -48,7 +48,7 @@ vec3 RaceCar::getPosition()
 
 vec3 RaceCar::getFaceVector()
 {
-	return carModel->getFaceVector();
+	return physicalModel->getCurrentMovement();
 }
 
 void RaceCar::setController(RaceCarController* controller) {

@@ -19,13 +19,21 @@ private:
 
 	glm::mat4 calculateModelMatrix() {
 
-		glm::mat4 model;
-		rotation[0];
-		model = glm::rotate(model, glm::radians(rotation.x), glm::vec3(1, 0, 0));
-		model = glm::rotate(model, glm::radians(rotation.y), glm::vec3(0, 1, 0));
-		model = glm::rotate(model, glm::radians(rotation.z), glm::vec3(0, 0, 1));
+		glm::mat4 model = glm::mat4(
+			glm::vec4(1, 0, 0, 0),
+			glm::vec4(0, 1, 0, 0),
+			glm::vec4(0, 0, 1, 0),
+			glm::vec4(0, 0, 0, 1)
+		);
+		
+		/*for (int i = 0; i < 3; ++i) {
 
-		model = glm::translate(model, position);
+			glm::vec3 axis = glm::vec3(0, 0, 0);
+			axis[i] = 1;
+
+			model = glm::rotate(model, glm::radians(rotation[i]), axis);
+		}
+		model = glm::translate(model, position);*/
 
 		return model;
 	}
@@ -69,15 +77,5 @@ public:
 	virtual glm::vec3 getFaceVector() {
 
 		return glm::vec3(0, 0, 1);
-	}
-
-	Model getModel()
-	{
-		return ourModel;
-	}
-
-	Shader getShader()
-	{
-		return shader;
 	}
 };

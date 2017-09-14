@@ -8,6 +8,7 @@ using namespace glm;
 
 RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 
+	this->terrainLoader = new TerrainLoader();
 	this->race = race;
 
 	if (!race->isComputerOnly()) {
@@ -31,6 +32,8 @@ void RaceScene::render() {
 
 	glClearColor(0.5, 0.5, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	terrainLoader->draw(camera->getViewMatrix(), camera->getProjectionMatrix());
 
 	for (RaceCar* raceCar : raceCars) {
 

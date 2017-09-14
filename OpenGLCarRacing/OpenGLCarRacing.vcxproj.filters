@@ -125,5 +125,34 @@
       <Filter>sources\drawing</Filter>
     </ClInclude>
     <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h" />
+    <ClCompile Include="sources\models\physics\PhysicalModel.cpp" />
+    <ClCompile Include="sources\models\car\RaceCar.cpp" />
+    <ClCompile Include="sources\models\controllers\ComputerRaceCarController.cpp" />
+    <ClCompile Include="sources\models\controllers\PlayerRaceCarController.cpp" />
+    <ClCompile Include="sources\models\car\RaceCarFactory.cpp" />
+    <ClCompile Include="sources\input\InputHandler.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="sources\drawing\RaceFrameRenderer.cpp" />
+    <ClCompile Include="sources\models\controllers\RaceCarController.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sources\drawing\FrameUpdateableObject.h" />
+    <ClInclude Include="sources\models\physics\PhysicalModel.h" />
+    <ClInclude Include="sources\models\controllers\ComputerRaceCarController.h" />
+    <ClInclude Include="sources\models\controllers\PlayerRaceCarController.h" />
+    <ClInclude Include="sources\models\car\RaceCarFactory.h" />
+    <ClInclude Include="sources\input\InputHandler.h" />
+    <ClInclude Include="sources\models\controllers\RaceCarController.h" />
+    <ClInclude Include="sources\drawing\RaceFrameRenderer.h" />
+    <ClInclude Include="sources\drawing\FrameRenderer.h" />
+    <ClInclude Include="sources\models\car\RaceCar.h" />
+    <ClInclude Include="sources\drawing\VisualObject.h" />
+    <ClInclude Include="sources\models\physics\Rotation.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Drawable.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="TerrainLoader.h" />
   </ItemGroup>
 </Project>
