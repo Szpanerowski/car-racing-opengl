@@ -16,7 +16,7 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar(vec3(0, 0, 0));
 		
 		raceCars.push_back(playerCar);
-		camera = new Camera(vec3(0, 0, 3), vec3(0, 0, 0), vec3(0, 0, 1), (float)windowWidth / windowHeight);
+		camera = new Camera(vec3(0, 0, 0), vec3(0, 0, -1), vec3(0, 1, 0), (float)windowWidth / windowHeight);
 	}
 }
 

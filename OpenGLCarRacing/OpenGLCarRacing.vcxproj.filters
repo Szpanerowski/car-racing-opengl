@@ -2,41 +2,44 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="sources\scenes">
-      <UniqueIdentifier>{18aa0c2c-7949-4c69-bc08-6784e6a41a09}</UniqueIdentifier>
+      <UniqueIdentifier>{2712649a-72ba-4b1f-8c2f-8d6b9205beab}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources">
-      <UniqueIdentifier>{9edcbb14-64ed-4800-b228-25f1ab80a1ef}</UniqueIdentifier>
+      <UniqueIdentifier>{748ba2f6-2285-4f3e-bfe6-2e8a535ad3e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\racing">
-      <UniqueIdentifier>{171a414f-d1e2-4b86-9d6a-0c680cba1f28}</UniqueIdentifier>
+      <UniqueIdentifier>{844d9ad7-e75f-4b05-bc36-9a19c9be2716}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\physics">
-      <UniqueIdentifier>{03c4ce3f-63b4-405c-9d28-2ab292b9ee3c}</UniqueIdentifier>
+      <UniqueIdentifier>{c6e23a1d-66e4-4968-86b6-998633b58107}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models">
-      <UniqueIdentifier>{e3c164bc-7b55-4d88-825c-f568a4883e50}</UniqueIdentifier>
+      <UniqueIdentifier>{81d8a943-a9be-4bad-9a73-53f43ad8fcfd}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\car">
-      <UniqueIdentifier>{2c6fc02a-f544-4aba-8935-9f4f716b8144}</UniqueIdentifier>
+      <UniqueIdentifier>{f4ce52a7-891b-4bbb-a3a2-a3fc5d732941}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\controllers">
-      <UniqueIdentifier>{f64272cb-1316-468d-b622-d4cd4e31e148}</UniqueIdentifier>
+      <UniqueIdentifier>{ad62c23c-a016-4998-9def-4cf8dc50d48f}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\input">
-      <UniqueIdentifier>{7dad7ed6-d80c-4bbc-8ca2-125086750c4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sources\drawing">
-      <UniqueIdentifier>{d722d241-fd56-485e-8c86-a3f71ce2090d}</UniqueIdentifier>
+      <UniqueIdentifier>{df378070-fb5a-462c-9e37-fac4aec57020}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing\camera">
-      <UniqueIdentifier>{1be30cee-9f51-4b65-ba1d-a7ac3636f8c2}</UniqueIdentifier>
+      <UniqueIdentifier>{2e242cdb-69fc-49e8-88db-954c065cdc4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\drawing">
+      <UniqueIdentifier>{f72b7847-d639-47a2-aaa6-6af0d362ab7d}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing\model">
-      <UniqueIdentifier>{a807bd38-f18f-4f2a-9c23-258e2ebd6c26}</UniqueIdentifier>
+      <UniqueIdentifier>{69eb2b0a-cbf5-433a-ae7c-841118242ec9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\scenes\RaceScene.cpp">
+      <Filter>sources\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scenes\Scene.cpp">
       <Filter>sources\scenes</Filter>
     </ClCompile>
     <ClCompile Include="sources\racing\Race.cpp">
@@ -48,29 +51,30 @@
     <ClCompile Include="sources\models\car\RaceCar.cpp">
       <Filter>sources\models\car</Filter>
     </ClCompile>
+    <ClCompile Include="sources\models\car\RaceCarFactory.cpp">
+      <Filter>sources\models\car</Filter>
+    </ClCompile>
     <ClCompile Include="sources\models\controllers\ComputerRaceCarController.cpp">
       <Filter>sources\models\controllers</Filter>
     </ClCompile>
     <ClCompile Include="sources\models\controllers\PlayerRaceCarController.cpp">
       <Filter>sources\models\controllers</Filter>
     </ClCompile>
-    <ClCompile Include="sources\models\car\RaceCarFactory.cpp">
-      <Filter>sources\models\car</Filter>
+    <ClCompile Include="sources\models\controllers\RaceCarController.cpp">
+      <Filter>sources\models\controllers</Filter>
     </ClCompile>
     <ClCompile Include="sources\input\InputHandler.cpp">
       <Filter>sources\input</Filter>
     </ClCompile>
-    <ClCompile Include="sources\models\controllers\RaceCarController.cpp">
-      <Filter>sources\models\controllers</Filter>
+    <ClCompile Include="sources\drawing\camera\Camera.cpp">
+      <Filter>sources\drawing\camera</Filter>
     </ClCompile>
-    <ClCompile Include="sources\scenes\Scene.cpp">
-      <Filter>sources\scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="sources\drawing\camera\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\scenes\RaceScene.h">
+      <Filter>sources\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\scenes\Scene.h">
       <Filter>sources\scenes</Filter>
     </ClInclude>
     <ClInclude Include="sources\racing\Race.h">
@@ -79,35 +83,38 @@
     <ClInclude Include="sources\models\physics\PhysicalModel.h">
       <Filter>sources\models\physics</Filter>
     </ClInclude>
+    <ClInclude Include="sources\models\physics\Rotation.h">
+      <Filter>sources\models\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\car\RaceCarFactory.h">
+      <Filter>sources\models\car</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\car\RaceCar.h">
+      <Filter>sources\models\car</Filter>
+    </ClInclude>
     <ClInclude Include="sources\models\controllers\ComputerRaceCarController.h">
       <Filter>sources\models\controllers</Filter>
     </ClInclude>
     <ClInclude Include="sources\models\controllers\PlayerRaceCarController.h">
       <Filter>sources\models\controllers</Filter>
     </ClInclude>
-    <ClInclude Include="sources\models\car\RaceCarFactory.h">
-      <Filter>sources\models\car</Filter>
+    <ClInclude Include="sources\models\controllers\RaceCarController.h">
+      <Filter>sources\models\controllers</Filter>
     </ClInclude>
     <ClInclude Include="sources\input\InputHandler.h">
       <Filter>sources\input</Filter>
     </ClInclude>
-    <ClInclude Include="sources\models\controllers\RaceCarController.h">
-      <Filter>sources\models\controllers</Filter>
+    <ClInclude Include="sources\drawing\UpdatedObject.h">
+      <Filter>sources\drawing</Filter>
     </ClInclude>
-    <ClInclude Include="sources\models\car\RaceCar.h">
-      <Filter>sources\models\car</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\models\physics\Rotation.h">
-      <Filter>sources\models\physics</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\scenes\Scene.h">
-      <Filter>sources\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\drawing\camera\Camera.h">
-      <Filter>sources\drawing\camera</Filter>
+    <ClInclude Include="sources\drawing\RenderedObject.h">
+      <Filter>sources\drawing</Filter>
     </ClInclude>
     <ClInclude Include="sources\drawing\Drawable.h">
       <Filter>sources\drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\drawing\camera\Camera.h">
+      <Filter>sources\drawing\camera</Filter>
     </ClInclude>
     <ClInclude Include="sources\drawing\model\Mesh.h">
       <Filter>sources\drawing\model</Filter>
@@ -118,41 +125,11 @@
     <ClInclude Include="sources\drawing\model\Shader.h">
       <Filter>sources\drawing\model</Filter>
     </ClInclude>
-    <ClInclude Include="sources\drawing\RenderedObject.h">
-      <Filter>sources\drawing</Filter>
+    <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h">
+      <Filter>sources\drawing\camera</Filter>
     </ClInclude>
-    <ClInclude Include="sources\drawing\UpdatedObject.h">
-      <Filter>sources\drawing</Filter>
+    <ClInclude Include="sources\scenes\TerrainLoader.h">
+      <Filter>sources\scenes</Filter>
     </ClInclude>
-    <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h" />
-    <ClCompile Include="sources\models\physics\PhysicalModel.cpp" />
-    <ClCompile Include="sources\models\car\RaceCar.cpp" />
-    <ClCompile Include="sources\models\controllers\ComputerRaceCarController.cpp" />
-    <ClCompile Include="sources\models\controllers\PlayerRaceCarController.cpp" />
-    <ClCompile Include="sources\models\car\RaceCarFactory.cpp" />
-    <ClCompile Include="sources\input\InputHandler.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="sources\drawing\RaceFrameRenderer.cpp" />
-    <ClCompile Include="sources\models\controllers\RaceCarController.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="sources\drawing\FrameUpdateableObject.h" />
-    <ClInclude Include="sources\models\physics\PhysicalModel.h" />
-    <ClInclude Include="sources\models\controllers\ComputerRaceCarController.h" />
-    <ClInclude Include="sources\models\controllers\PlayerRaceCarController.h" />
-    <ClInclude Include="sources\models\car\RaceCarFactory.h" />
-    <ClInclude Include="sources\input\InputHandler.h" />
-    <ClInclude Include="sources\models\controllers\RaceCarController.h" />
-    <ClInclude Include="sources\drawing\RaceFrameRenderer.h" />
-    <ClInclude Include="sources\drawing\FrameRenderer.h" />
-    <ClInclude Include="sources\models\car\RaceCar.h" />
-    <ClInclude Include="sources\drawing\VisualObject.h" />
-    <ClInclude Include="sources\models\physics\Rotation.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Drawable.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="TerrainLoader.h" />
   </ItemGroup>
 </Project>

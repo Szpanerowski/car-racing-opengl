@@ -40,7 +40,7 @@ RaceCar* RaceCarFactory::createRaceCar(vec3 position) {
 
 	PhysicalModel* physicalModel = new PhysicalModel();
 	RaceCar* raceCar = new RaceCar(position, physicalModel);
-	Drawable* carModel = new Drawable("mustang");
+	Drawable* carModel = new Drawable("car2");
 
 	raceCar->setModel(carModel);
 
