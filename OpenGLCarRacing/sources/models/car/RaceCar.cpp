@@ -57,4 +57,5 @@ void RaceCar::setController(RaceCarController* controller) {
 void RaceCar::setModel(Drawable* carModel) {
 	this->carModel = carModel;
 	this->carModel->setPosition(position);
+	this->carModel->scale(glm::vec3(0.6f, 0.6f, 0.6f));
 }
