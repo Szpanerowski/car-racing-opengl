@@ -50,7 +50,11 @@ mat4 Camera::calculateViewMatrix()
 {
 	if (followedObject != nullptr) {
 		
-		return lookAt(vec3(5, 2, 0), followedObject->getPosition(), vec3(0, 1, 0));
+		vec3 followedForward = followedObject->getForwardVector();
+		vec3 followedPosition = followedObject->getPosition();
+		vec3 cameraPosition = followedPosition - followedForward * 3.0f + vec3(0, 2, 0);
+
+		return lookAt(cameraPosition, followedPosition, vec3(0, 1, 0));
 	}
 	else
 		return lookAt(position, focus, nose);

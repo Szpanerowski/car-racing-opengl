@@ -183,7 +183,6 @@
     <ClInclude Include="sources\models\controllers\RaceCarController.h" />
     <ClInclude Include="sources\models\car\RaceCar.h" />
     <ClInclude Include="sources\drawing\RenderedObject.h" />
-    <ClInclude Include="sources\models\physics\Rotation.h" />
     <ClInclude Include="sources\scenes\Scene.h" />
   </ItemGroup>
   <ItemGroup>

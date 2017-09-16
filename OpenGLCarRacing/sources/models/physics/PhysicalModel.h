@@ -1,25 +1,25 @@
 #pragma once
 
 #include "glm/vec3.hpp"
-#include "models/physics/Rotation.h"
 #include "drawing/UpdatedObject.h"
 
-class PhysicalModel : public UpdatedObject
+class PhysicalModel
 {
 private:
 	glm::vec3 currentAcceleration;
 	glm::vec3 currentMovement;
-	Rotation rotationSpeed;
-	Rotation currentRotation;
+	glm::vec3 currentRotation;
+	glm::vec3 nextRotation;
 
 public:
 
 	PhysicalModel();
 
 	virtual void applyForce(glm::vec3 forceVector, glm::vec3 pivotShift);
-	virtual void frameUpdate();
+	
+	void updatePhysics();
 
 	glm::vec3 getCurrentMovement();
-	Rotation getCurrentRotation();
+	glm::vec3 getCurrentRotation();
 };
 
