@@ -22,7 +22,7 @@ void PhysicalModel::applyForce(vec3 forceVector, vec3 pivotShift) {
 
 		pivotShift *= glm::length(forceVector);
 
-		vec3 rotation = vec3(degrees((pivotShift.x)), degrees(asin(pivotShift.y)), degrees(asin(pivotShift.z)));
+		vec3 rotation = vec3(degrees(asin(pivotShift.x)), degrees(asin(pivotShift.y)), degrees(asin(pivotShift.z)));
 		nextRotation += rotation;
 	}
 }
@@ -36,7 +36,9 @@ void PhysicalModel::updatePhysics() {
 		currentMovement += currentAcceleration * 0.95f;
 	}
 	
-	currentAcceleration = -0.01f * currentMovement;
+
+
+	currentAcceleration = -0.05f * currentMovement;
 
 	currentRotation = nextRotation;
 	nextRotation = vec3(0, 0, 0);

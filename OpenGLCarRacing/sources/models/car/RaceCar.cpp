@@ -5,12 +5,9 @@
 
 using namespace glm;
 
-RaceCar::RaceCar() {
-}
-
-RaceCar::RaceCar(PhysicalModel* physicalModel)
-	: RaceCar() {
+RaceCar::RaceCar(Drawable* carModel, PhysicalModel* physicalModel) {
 	
+	this->carModel = carModel;
 	this->physicalModel = physicalModel;
 }
 
@@ -26,6 +23,7 @@ void RaceCar::brake(float braking) {
 
 void RaceCar::turn(float turnLeftDirection) {
 
+	vec3 forwardVector = getForwardVector();
 	physicalModel->applyForce(getForwardVector(), vec3(0, 1, 0) * turnLeftDirection);
 }
 
@@ -58,9 +56,4 @@ vec3 RaceCar::getForwardVector()
 
 void RaceCar::setController(RaceCarController* controller) {
 	this->controller = controller;
-}
-
-void RaceCar::setModel(Drawable* carModel) {
-	this->carModel = carModel;
-	this->carModel->move(this->position);
 }

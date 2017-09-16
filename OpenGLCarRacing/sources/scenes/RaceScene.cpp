@@ -17,8 +17,8 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 		raceCars.push_back(playerCar);
 
 		float cameraAspect = (float)windowWidth / windowHeight;
-		camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), (float) windowWidth / windowHeight);
-		//camera = new Camera(playerCar, cameraAspect);
+		//camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), (float) windowWidth / windowHeight);
+		camera = new Camera(playerCar, cameraAspect);
 	}
 }
 

@@ -23,8 +23,7 @@ private:
 
 public:
 
-	RaceCar();
-	RaceCar(PhysicalModel* physicalModel);
+	RaceCar(Drawable* carModel, PhysicalModel* physicalModel);
 
 	void accelerate(float acceleration);
 	void brake(float braking);
