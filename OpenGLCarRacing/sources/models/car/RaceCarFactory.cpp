@@ -37,11 +37,11 @@ RaceCar* RaceCarFactory::createOpponentRaceCar(vec3 position, TerrainLoader* ter
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createRaceCar(vec3 position, string texture) {
+RaceCar* RaceCarFactory::createRaceCar(vec3 position, string model) {
 
 	PhysicalModel* physicalModel = new PhysicalModel();
-	RaceCar* raceCar = new RaceCar(position, physicalModel);
-	Drawable* carModel = new Drawable(texture);
+	RaceCar* raceCar = new RaceCar(physicalModel);
+	Drawable* carModel = new Drawable(model, position, vec3(0, 0, -1));
 
 	raceCar->setModel(carModel);
 

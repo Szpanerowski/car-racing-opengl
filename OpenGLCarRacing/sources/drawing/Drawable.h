@@ -18,41 +18,49 @@ private:
 	glm::vec3 rotation;
 	glm::vec3 scaleFactor;
 
-	glm::mat4 calculateModelMatrix() {
+	glm::vec3 initialForwardVector;
 
-		glm::mat4 model = glm::mat4(
-			glm::vec4(1, 0, 0, 0),
-			glm::vec4(0, 1, 0, 0),
-			glm::vec4(0, 0, 1, 0),
-			glm::vec4(0, 0, 0, 1)
-		);
+	glm::mat4 calculateModelMatrix() {
+	
+		glm::mat4 model = glm::mat4(1.0f);
 
 		model = glm::scale(model, scaleFactor);
+		model = glm::translate(model, position);
+		model = calculateRotationMatrix() * model;
+	
+
+		return model;
+	}
+
+	glm::mat4 calculateRotationMatrix() {
+
+		glm::mat4 rotationMatrix = glm::mat4();
 
 		for (int i = 0; i < 3; ++i) {
 
 			glm::vec3 axis = glm::vec3(0, 0, 0);
 			axis[i] = 1;
 
-			model = glm::rotate(model, glm::radians(rotation[i]), axis);
+			rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation[i]), axis);
 		}
 
-		model = glm::translate(model, position);
+		return rotationMatrix;
+	}
 
-		return model;
+	Drawable(glm::vec3 position, glm::vec3 forward, glm::vec3 rotation, glm::vec3 scale) {
+
+		this->position = position;
+		this->rotation = rotation;
+		this->scaleFactor = scale;
+		this->initialForwardVector = forward;
 	}
 
 public:
 
-	Drawable() {
 	
-		this->position = glm::vec3(0, 0, 0);
-		this->rotation = glm::vec3(0, 0, 0);
-		this->scaleFactor = glm::vec3(1, 1, 1);
-	}
 
-	Drawable(std::string name)
-		: Drawable() {
+	Drawable(std::string name, glm::vec3 position = glm::vec3(0, 0, 0), glm::vec3 forward = glm::vec3(0, 0, 1), glm::vec3 rotation = glm::vec3(0, 0, 0), glm::vec3 scale = glm::vec3(1, 1, 1))
+			: Drawable(position, forward, rotation, scale) {
 
 		std::string path = "resources/models/" + name + ".obj";
 		ourModel = Model(path);
@@ -80,14 +88,19 @@ public:
 		this->scaleFactor *= scaleFactor;
 	}
 
+	void rotate(glm::vec3 rotation) {
+
+		this->rotation += rotation;
+	}
+
 	virtual glm::vec3 getPosition() {
 		return this->position;
 	}
-	virtual void setPosition(glm::vec3 position) {
-		this->position = position;
-	}
-	virtual glm::vec3 getFaceVector() {
 
-		return glm::normalize(position);
+	virtual glm::vec3 getForwardVector() {
+
+		glm::vec4 forwardVector4 = calculateRotationMatrix() * glm::vec4(initialForwardVector, 0);
+
+		return glm::normalize(glm::vec3(forwardVector4));
 	}
 };

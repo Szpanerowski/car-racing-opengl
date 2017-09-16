@@ -2,37 +2,37 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="sources\scenes">
-      <UniqueIdentifier>{2712649a-72ba-4b1f-8c2f-8d6b9205beab}</UniqueIdentifier>
+      <UniqueIdentifier>{2f7f73d3-c28e-4054-ac60-c57e8887b4e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources">
-      <UniqueIdentifier>{748ba2f6-2285-4f3e-bfe6-2e8a535ad3e7}</UniqueIdentifier>
+      <UniqueIdentifier>{e5f967a7-899a-4c26-85c3-0c1f8e508539}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\racing">
-      <UniqueIdentifier>{844d9ad7-e75f-4b05-bc36-9a19c9be2716}</UniqueIdentifier>
+      <UniqueIdentifier>{1fbf9883-de98-4e05-a70b-9ce0c1748f95}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\physics">
-      <UniqueIdentifier>{c6e23a1d-66e4-4968-86b6-998633b58107}</UniqueIdentifier>
+      <UniqueIdentifier>{393ffd3e-58bf-4889-a767-1dc71bf1349b}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models">
-      <UniqueIdentifier>{81d8a943-a9be-4bad-9a73-53f43ad8fcfd}</UniqueIdentifier>
+      <UniqueIdentifier>{ccde19ab-e8ed-4c21-8064-ac6a1bee6381}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\car">
-      <UniqueIdentifier>{f4ce52a7-891b-4bbb-a3a2-a3fc5d732941}</UniqueIdentifier>
+      <UniqueIdentifier>{4f2ff206-300d-47fa-833b-6792dc7be0b8}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\controllers">
-      <UniqueIdentifier>{ad62c23c-a016-4998-9def-4cf8dc50d48f}</UniqueIdentifier>
+      <UniqueIdentifier>{1e9ca7e8-a61a-41c6-a843-7ce2c296052d}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\input">
-      <UniqueIdentifier>{df378070-fb5a-462c-9e37-fac4aec57020}</UniqueIdentifier>
+      <UniqueIdentifier>{9e531956-a70f-48ad-b73d-7a385df14fe7}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing\camera">
-      <UniqueIdentifier>{2e242cdb-69fc-49e8-88db-954c065cdc4b}</UniqueIdentifier>
+      <UniqueIdentifier>{410cfe92-d728-436b-9baf-52ef6eec91f6}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing">
-      <UniqueIdentifier>{f72b7847-d639-47a2-aaa6-6af0d362ab7d}</UniqueIdentifier>
+      <UniqueIdentifier>{3bab4cfa-b1ac-43cd-a7c7-086ea0a14eaf}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing\model">
-      <UniqueIdentifier>{69eb2b0a-cbf5-433a-ae7c-841118242ec9}</UniqueIdentifier>
+      <UniqueIdentifier>{dfdf5626-0708-4dc4-baab-36438bee1009}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +74,9 @@
     <ClInclude Include="sources\scenes\RaceScene.h">
       <Filter>sources\scenes</Filter>
     </ClInclude>
+    <ClInclude Include="sources\scenes\TerrainLoader.h">
+      <Filter>sources\scenes</Filter>
+    </ClInclude>
     <ClInclude Include="sources\scenes\Scene.h">
       <Filter>sources\scenes</Filter>
     </ClInclude>
@@ -81,9 +84,6 @@
       <Filter>sources\racing</Filter>
     </ClInclude>
     <ClInclude Include="sources\models\physics\PhysicalModel.h">
-      <Filter>sources\models\physics</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\models\physics\Rotation.h">
       <Filter>sources\models\physics</Filter>
     </ClInclude>
     <ClInclude Include="sources\models\car\RaceCarFactory.h">
@@ -113,6 +113,9 @@
     <ClInclude Include="sources\drawing\Drawable.h">
       <Filter>sources\drawing</Filter>
     </ClInclude>
+    <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h">
+      <Filter>sources\drawing\camera</Filter>
+    </ClInclude>
     <ClInclude Include="sources\drawing\camera\Camera.h">
       <Filter>sources\drawing\camera</Filter>
     </ClInclude>
@@ -124,12 +127,6 @@
     </ClInclude>
     <ClInclude Include="sources\drawing\model\Shader.h">
       <Filter>sources\drawing\model</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h">
-      <Filter>sources\drawing\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\scenes\TerrainLoader.h">
-      <Filter>sources\scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

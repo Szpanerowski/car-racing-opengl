@@ -8,7 +8,7 @@ class ComputerRaceCarController : public RaceCarController
 private:
 
 	bool driveForward();
-	bool driveBackward();
+	bool breakCar();
 	bool turnLeft();
 	bool turnRight();
 	TerrainLoader* terrainLoader;

@@ -11,20 +11,25 @@ ComputerRaceCarController::ComputerRaceCarController(RaceCar* raceCar, TerrainLo
 void ComputerRaceCarController::frameUpdate() {
 
 	if (driveForward())
-		getRaceCar()->accelerate(vec3(0, 0, 0.001f));
-	else
-		getRaceCar()->accelerate(vec3(0, 0, -0.001f));
+		getRaceCar()->accelerate(0.01);
+	else if(breakCar())
+		getRaceCar()->brake(0.01);
 }
 
 bool ComputerRaceCarController::driveForward() {
-	if (ComputerRaceCarController::terrainLoader->getTerrainType(getRaceCar()->getPosition().x, getRaceCar()->getPosition().z + 3) == TerrainLoader::Road)
+	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*3.0f;
+	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x, helperVec.z) == TerrainLoader::Road)
 		return true;
 	else
 		return false;
 }
 
-bool ComputerRaceCarController::driveBackward() {
-	return false;
+bool ComputerRaceCarController::breakCar() {
+	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*3.0f;
+	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x, helperVec.z) != TerrainLoader::Road)
+		return true;
+	else
+		return false;
 }
 
 bool ComputerRaceCarController::turnLeft() {

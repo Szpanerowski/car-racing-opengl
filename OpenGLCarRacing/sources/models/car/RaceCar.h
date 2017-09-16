@@ -24,16 +24,17 @@ private:
 public:
 
 	RaceCar();
-	RaceCar(glm::vec3 position);
-	RaceCar(glm::vec3 position, PhysicalModel* physicalModel);
+	RaceCar(PhysicalModel* physicalModel);
 
-	void accelerate(glm::vec3 acceleration);
+	void accelerate(float acceleration);
+	void brake(float braking);
+	void turn(float turnDirection);
 
 	virtual void frameUpdate();
 	virtual void render(glm::mat4 view, glm::mat4 projection);
 
 	virtual glm::vec3 getPosition();
-	virtual glm::vec3 getFaceVector();
+	virtual glm::vec3 getForwardVector();
 
 	void setController(RaceCarController* controller);
 	void setModel(Drawable* drawable);
