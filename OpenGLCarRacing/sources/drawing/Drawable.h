@@ -83,7 +83,9 @@ public:
 	virtual glm::vec3 getPosition() {
 		return this->position;
 	}
-
+	virtual void setPosition(glm::vec3 position) {
+		this->position = position;
+	}
 	virtual glm::vec3 getFaceVector() {
 
 		return glm::normalize(position);

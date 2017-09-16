@@ -20,6 +20,7 @@ class TerrainLoader
 {
 public:
 	enum TerrainType { Road, Grass};
+	TerrainLoader() {};
 	TerrainLoader(int x, int z)
 	{
 		if (x <= 8)
@@ -40,9 +41,9 @@ public:
 			for (int j = 0; j < z; j += 2)
 			{
 				//rysowanie drogi na krawedziach
-				if ((i == 2 || i == x-4 ||  j==2 || j==z-4) && j!=0 && i!=0) {
+				if ((i == 2 || i == x-4 ||  j==2 || j==z-4) && i!=0 && j!=0 && i!=x-2 && j!=z-2) {
 					Drawable* d = new Drawable("road");
-					//d->scale(glm::vec3(0.1, 1, 0.1));
+					//d.scale(0.1, 1, 0.1);
 					d->move(glm::vec3(i, -0.5, j));
 					vecTerrain.push_back(d);
 					terrainArray[i][j] = Road;
@@ -50,10 +51,10 @@ public:
 				//rysowanie trawy na reszcie pola
 				else { 
 					Drawable* d = new Drawable("terrain");
-					//d->scale(glm::vec3(0.1, 1, 0.1));
+					//d.scale(0.1, 1, 0.1);
 					d->move(glm::vec3(i, -0.5, j));
 					vecTerrain.push_back(d);
-					terrainArray[i][j] = Grass;
+					//terrainArray[i][j] = Grass;
 				}
 			}
 		}
@@ -68,8 +69,12 @@ public:
 
 	TerrainType getTerrainType(int x, int z)
 	{
-		if(x>=0 && x<this->x && z>=0 && z<this->z)
-		return terrainArray[x][z];
+		if (x >= 0 && x < this->x && z >= 0 && z < this->z)
+		{
+			x = x + x % 2;
+			z = z + z % 2;
+			return terrainArray[x][z];
+		}
 	}
 
 private:

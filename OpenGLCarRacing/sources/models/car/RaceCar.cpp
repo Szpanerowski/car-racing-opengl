@@ -56,4 +56,5 @@ void RaceCar::setController(RaceCarController* controller) {
 
 void RaceCar::setModel(Drawable* carModel) {
 	this->carModel = carModel;
+	this->carModel->setPosition(position);
 }
