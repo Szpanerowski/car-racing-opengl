@@ -6,6 +6,7 @@ private:
 
 	static Scene* currentScene;
 	static void renderFrame();
+	static void timerTick(int value);
 
 protected:
 

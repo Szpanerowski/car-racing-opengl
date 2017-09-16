@@ -14,4 +14,11 @@ void Scene::renderFrame() {
 
 	currentScene->update();
 	currentScene->render();
+
+	glutTimerFunc(17, timerTick, 0);
+}
+
+void Scene::timerTick(int value) {
+
+	glutPostRedisplay();
 }

@@ -20,7 +20,6 @@ class TerrainLoader
 {
 public:
 	enum TerrainType { Road, Grass};
-	TerrainLoader() {};
 	TerrainLoader(int x, int z)
 	{
 		if (x <= 8)
@@ -42,19 +41,19 @@ public:
 			{
 				//rysowanie drogi na krawedziach
 				if ((i == 2 || i == x-4 ||  j==2 || j==z-4) && j!=0 && i!=0) {
-					Drawable* d = new Drawable("road.obj");
-					//d.scale(0.1, 1, 0.1);
+					Drawable* d = new Drawable("road");
+					//d->scale(glm::vec3(0.1, 1, 0.1));
 					d->move(glm::vec3(i, -0.5, j));
 					vecTerrain.push_back(d);
 					terrainArray[i][j] = Road;
 				}
 				//rysowanie trawy na reszcie pola
 				else { 
-					Drawable* d = new Drawable("terrain.obj");
-					//d.scale(0.1, 1, 0.1);
+					Drawable* d = new Drawable("terrain");
+					//d->scale(glm::vec3(0.1, 1, 0.1));
 					d->move(glm::vec3(i, -0.5, j));
 					vecTerrain.push_back(d);
-					//terrainArray[i][j] = Grass;
+					terrainArray[i][j] = Grass;
 				}
 			}
 		}

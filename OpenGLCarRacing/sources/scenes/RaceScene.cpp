@@ -8,15 +8,17 @@ using namespace glm;
 
 RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 
-	this->terrainLoader = new TerrainLoader();
+	this->terrainLoader = new TerrainLoader(30, 30);
 	this->race = race;
 
 	if (!race->isComputerOnly()) {
 
 		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar(vec3(0, 0, 0));
-		
 		raceCars.push_back(playerCar);
-		camera = new Camera(vec3(0, 0, 0), vec3(0, 0, -1), vec3(0, 1, 0), (float)windowWidth / windowHeight);
+
+		float cameraAspect = (float)windowWidth / windowHeight;
+		//camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), (float) windowWidth / windowHeight);
+		camera = new Camera(playerCar, cameraAspect);
 	}
 }
 
@@ -26,12 +28,19 @@ void RaceScene::update() {
 
 		raceCar->frameUpdate();
 	}
+
+	camera->frameUpdate();
 }
 
 void RaceScene::render() {
 
 	glClearColor(0.5, 0.5, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
+	glEnable(GL_DEPTH_TEST);
 
 	terrainLoader->draw(camera->getViewMatrix(), camera->getProjectionMatrix());
 
@@ -41,5 +50,4 @@ void RaceScene::render() {
 	}
 
 	glutSwapBuffers();
-	glutPostRedisplay();
 }

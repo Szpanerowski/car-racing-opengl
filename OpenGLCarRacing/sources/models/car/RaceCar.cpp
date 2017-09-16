@@ -25,7 +25,6 @@ RaceCar::RaceCar(vec3 position, PhysicalModel* physicalModel)
 void RaceCar::accelerate(vec3 acceleration) {
 
 	physicalModel->applyForce(acceleration, vec3(0, 0, 0));
-	printf("Accelerating by x = %f, y = %f, z = %f\n", acceleration.x, acceleration.y, acceleration.z);
 }
 
 void RaceCar::frameUpdate() {

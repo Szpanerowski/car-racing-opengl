@@ -9,10 +9,6 @@ Camera::Camera(float aspect, float fovy, float near, float far)
 	this->nearPlane = near;
 	this->farPlane = far;
 
-	this->position = vec3(0, 0, 5);
-	this->focus = vec3(0, 0, 0);
-	this->nose = vec3(0, 1, 0);
-
 	this->projectionMatrix = createProjectionMatrix();
 }
 
@@ -52,18 +48,12 @@ void Camera::frameUpdate()
 
 mat4 Camera::calculateViewMatrix()
 {
-	return lookAt(position, focus, nose);
-
-	if (followedObject == nullptr)
-		return lookAt(position, focus, nose);
-	else
-	{
-		vec3 faceDirection = followedObject->getFaceVector();
-		vec3 focusPosition = followedObject->getPosition();
-		vec3 cameraPosition = focusPosition - faceDirection;
-
-		return lookAt(cameraPosition, focusPosition, vec3(0, 1, 0));
+	if (followedObject != nullptr) {
+		
+		return lookAt(vec3(5, 2, 0), followedObject->getPosition(), vec3(0, 1, 0));
 	}
+	else
+		return lookAt(position, focus, nose);
 }
 
 mat4 Camera::createProjectionMatrix()

@@ -16,6 +16,7 @@ private:
 
 	glm::vec3 position;
 	glm::vec3 rotation;
+	glm::vec3 scaleFactor;
 
 	glm::mat4 calculateModelMatrix() {
 
@@ -25,15 +26,18 @@ private:
 			glm::vec4(0, 0, 1, 0),
 			glm::vec4(0, 0, 0, 1)
 		);
-		
-		/*for (int i = 0; i < 3; ++i) {
+
+		model = glm::scale(model, scaleFactor);
+
+		for (int i = 0; i < 3; ++i) {
 
 			glm::vec3 axis = glm::vec3(0, 0, 0);
 			axis[i] = 1;
 
 			model = glm::rotate(model, glm::radians(rotation[i]), axis);
 		}
-		model = glm::translate(model, position);*/
+
+		model = glm::translate(model, position);
 
 		return model;
 	}
@@ -44,6 +48,7 @@ public:
 	
 		this->position = glm::vec3(0, 0, 0);
 		this->rotation = glm::vec3(0, 0, 0);
+		this->scaleFactor = glm::vec3(1, 1, 1);
 	}
 
 	Drawable(std::string name)
@@ -70,12 +75,17 @@ public:
 		position += vector;
 	}
 
+	void scale(glm::vec3 scaleFactor) {
+
+		this->scaleFactor *= scaleFactor;
+	}
+
 	virtual glm::vec3 getPosition() {
 		return this->position;
 	}
 
 	virtual glm::vec3 getFaceVector() {
 
-		return glm::vec3(0, 0, 1);
+		return glm::normalize(position);
 	}
 };

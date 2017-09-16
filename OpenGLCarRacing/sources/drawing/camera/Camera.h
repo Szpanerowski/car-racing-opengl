@@ -26,7 +26,7 @@ private:
 	glm::mat4 viewMatrix;
 	glm::mat4 projectionMatrix;
 
-	Camera(float aspect, float fovy = 45.0f, float near = 0.1f, float far = 100.0f);
+	Camera(float aspect, float fovy, float near, float far);
 
 	glm::mat4 calculateViewMatrix();
 	glm::mat4 createProjectionMatrix();
