@@ -6,14 +6,21 @@ using namespace glm;
 ComputerRaceCarController::ComputerRaceCarController(RaceCar* raceCar, TerrainLoader* terrainLoader)
 	: RaceCarController(raceCar) {
 	ComputerRaceCarController::terrainLoader = terrainLoader;
+	bp = 0;
 }
 
 void ComputerRaceCarController::frameUpdate() {
 
 	if (driveForward())
 		getRaceCar()->accelerate(0.01);
-	else if(breakCar())
+	else if (breakCar())
+	{
 		getRaceCar()->brake(0.01);
+		bp += 2;
+		if (bp >= 8)
+			bp = bp % 8;
+		getRaceCar()->turn(-0.1);
+	}
 }
 
 bool ComputerRaceCarController::driveForward() {

@@ -11,6 +11,7 @@ private:
 	bool breakCar();
 	bool turnLeft();
 	bool turnRight();
+	int bp;
 	TerrainLoader* terrainLoader;
 
 public:

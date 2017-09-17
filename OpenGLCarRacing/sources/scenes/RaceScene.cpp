@@ -13,10 +13,10 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 
 	if (!race->isComputerOnly()) {
 
-		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar(vec3(-2, -0.7f, 2));
+		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar(vec3(-2, -0.5f, 2));
 		raceCars.push_back(playerCar);
 
-		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(vec3(2.5, -0.7f, 2.5), terrainLoader);
+		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(vec3(2.5, -0.5f, 2.5), terrainLoader);
 		raceCars.push_back(opponentCar);
 
 		float cameraAspect = (float)windowWidth / windowHeight;

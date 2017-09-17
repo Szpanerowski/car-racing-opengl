@@ -19,7 +19,7 @@ RaceCarFactory::RaceCarFactory() {}
 
 RaceCar* RaceCarFactory::createPlayerRaceCar(vec3 position) {
 	
-	RaceCar* raceCar = createRaceCar(position, "car");
+	RaceCar* raceCar = createRaceCar(position, "car2");
 	RaceCarController* controller = new PlayerRaceCarController(raceCar);
 
 	raceCar->setController(controller);
@@ -29,7 +29,7 @@ RaceCar* RaceCarFactory::createPlayerRaceCar(vec3 position) {
 
 RaceCar* RaceCarFactory::createOpponentRaceCar(vec3 position, TerrainLoader* terrainLoader) {
 	
-	RaceCar* raceCar = createRaceCar(position, "car2");
+	RaceCar* raceCar = createRaceCar(position, "car");
 	RaceCarController* controller = new ComputerRaceCarController(raceCar, terrainLoader);
 
 	raceCar->setController(controller);
@@ -40,8 +40,9 @@ RaceCar* RaceCarFactory::createOpponentRaceCar(vec3 position, TerrainLoader* ter
 RaceCar* RaceCarFactory::createRaceCar(vec3 position, string model) {
 
 	PhysicalModel* physicalModel = new PhysicalModel();
-	RaceCar* raceCar = new RaceCar(physicalModel);
 	Drawable* carModel = new Drawable(model, position, vec3(0, 0, -1));
+	RaceCar* raceCar = new RaceCar(physicalModel);
+	
 
 	raceCar->setModel(carModel);
 

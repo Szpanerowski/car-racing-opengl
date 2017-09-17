@@ -26,7 +26,7 @@ private:
 
 		model = glm::scale(model, scaleFactor);
 		model = glm::translate(model, position);
-		model = calculateRotationMatrix() * model;
+		model = model * calculateRotationMatrix();
 	
 
 		return model;

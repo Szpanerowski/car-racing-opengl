@@ -33,7 +33,17 @@ void PhysicalModel::updatePhysics() {
 		currentMovement = vec3(0, 0, 0);
 	else {
 
+		//temp
+		for (int i = 0;i < 3;i++)
+		{
+			if (currentMovement[i] > 0)
+				currentMovement[i] -= 0.008f;
+			else if (currentMovement[i] < 0)
+				currentMovement[i] += 0.008f;
+		}
 		currentMovement += currentAcceleration * 0.95f;
+		//end temp
+
 	}
 	
 	currentAcceleration = -0.01f * currentMovement;
