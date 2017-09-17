@@ -3,28 +3,25 @@
 
 #include <cstdio>
 
+#include "glm/gtx/vector_angle.hpp"
+
 using namespace glm;
 
-RaceCar::RaceCar(Drawable* carModel, PhysicalModel* physicalModel) {
+RaceCar::RaceCar(Drawable* carModel) {
 	
 	this->carModel = carModel;
-	this->physicalModel = physicalModel;
+	this->turnVector = carModel->getForwardVector();
+	this->frontWheelsShift = vec3(0, 0, 0.5);
 }
 
 void RaceCar::accelerate(float acceleration) {
 
-	physicalModel->applyForce(getForwardVector() * acceleration, vec3(0, 0, 0));
-}
-
-void RaceCar::brake(float braking) {
-
-	physicalModel->applyForce(getForwardVector() * -braking, vec3(0, 0, 0));
+	physicalModel->applyAcceleration(acceleration);
 }
 
 void RaceCar::turn(float turnLeftDirection) {
 
-	vec3 forwardVector = getForwardVector();
-	physicalModel->applyForce(getForwardVector(), vec3(0, 1, 0) * turnLeftDirection);
+	this->turnVector = vec3(turnLeftDirection, 0, 0);
 }
 
 void RaceCar::frameUpdate() {
@@ -33,10 +30,10 @@ void RaceCar::frameUpdate() {
 	physicalModel->updatePhysics();
 
 	vec3 movementVector = physicalModel->getCurrentMovement();
-	carModel->move(movementVector);
+	vec3 velocityVector = rotatePhysicalModelVector(movementVector);
+	carModel->move(velocityVector);
 
 	vec3 rotationVector = physicalModel->getCurrentRotation();
-
 	carModel->rotate(rotationVector);
 }
 
@@ -54,6 +51,30 @@ vec3 RaceCar::getForwardVector()
 	return carModel->getForwardVector();
 }
 
+vec3 RaceCar::getTurnVector() {
+	return this->turnVector;
+}
+
 void RaceCar::setController(RaceCarController* controller) {
 	this->controller = controller;
+}
+
+void RaceCar::setPhysicalModel(RaceCarPhysicalModel* physicalModel) {
+	this->physicalModel = physicalModel;
+}
+
+vec3 RaceCar::getFrontWheelsShift() {
+	return this->frontWheelsShift;
+}
+
+vec3 RaceCar::rotatePhysicalModelVector(vec3 vector) {
+
+	vec3 physicalModelVector = vec3(0, 0, 1);
+	vec3 forward = normalize(carModel->getForwardVector());
+	float rotationAngle = angle(physicalModelVector, forward);
+	float rotationDegrees = degrees(rotationAngle);
+	
+	vec3 result = rotate(mat4(1.0f), rotationAngle, vec3(0, 1, 0)) * vec4(vector, 0);
+
+	return result;
 }

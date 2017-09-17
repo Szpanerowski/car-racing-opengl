@@ -1,6 +1,7 @@
 #include "RaceCarFactory.h"
 #include "models/controllers/PlayerRaceCarController.h"
 #include "models/controllers/ComputerRaceCarController.h"
+#include "models/physics/RaceCarPhysicalModel.h"
 
 using namespace glm;
 
@@ -38,9 +39,11 @@ RaceCar* RaceCarFactory::createOpponentRaceCar(vec3 position) {
 
 RaceCar* RaceCarFactory::createRaceCar(vec3 position) {
 
-	PhysicalModel* physicalModel = new PhysicalModel();
 	Drawable* carModel = new Drawable("car2", position, vec3(0, 0, -1));
-	RaceCar* raceCar = new RaceCar(carModel, physicalModel);
+	RaceCar* raceCar = new RaceCar(carModel);
+
+	RaceCarPhysicalModel* physicalModel = new RaceCarPhysicalModel(raceCar, 1000);
+	raceCar->setPhysicalModel(physicalModel);
 
 	return raceCar;
 }

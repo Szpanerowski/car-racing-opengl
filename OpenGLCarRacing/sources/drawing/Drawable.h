@@ -25,7 +25,7 @@ private:
 		glm::mat4 model = glm::mat4(1.0f);
 
 		model = glm::translate(model, position);
-		model = calculateRotationMatrix() * model;
+		model = model * calculateRotationMatrix();
 		model = glm::scale(model, scaleFactor);
 
 		return model;
@@ -85,6 +85,19 @@ public:
 	void rotate(glm::vec3 rotation) {
 
 		this->rotation += rotation;
+		
+		for (int i = 0; i < 3; ++i) {
+
+			float rot = this->rotation[i];
+			long long div = rot / 360;
+
+			rot -= div * 360;
+
+			if (rot < 0)
+				rot += 360;
+
+			this->rotation[i] = rot;
+		}
 	}
 
 	virtual glm::vec3 getPosition() {

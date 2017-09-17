@@ -4,7 +4,9 @@
 
 using namespace glm;
 
-PhysicalModel::PhysicalModel() {
+PhysicalModel::PhysicalModel(float mass) {
+
+	this->mass = mass;
 
 	currentAcceleration = vec3(0, 0, 0);
 	currentMovement = vec3(0, 0, 0);
@@ -14,31 +16,18 @@ PhysicalModel::PhysicalModel() {
 
 void PhysicalModel::applyForce(vec3 forceVector, vec3 pivotShift) {
 
-	if (pivotShift == vec3(0, 0, 0)) {
+	currentAcceleration += vec3(0, 0, dot(forceVector, vec3(0, 0, 1)));
 
-		currentAcceleration = forceVector;
-	}
-	else {
+	const float i = 1;
+	float m = length(cross(pivotShift, forceVector));
 
-		pivotShift *= glm::length(forceVector);
-
-		vec3 rotation = vec3(degrees(asin(pivotShift.x)), degrees(asin(pivotShift.y)), degrees(asin(pivotShift.z)));
-		nextRotation += rotation;
-	}
+	nextRotation.y += m / i;
 }
 
 void PhysicalModel::updatePhysics() {
 
-	if (length(currentMovement) < 1 && currentAcceleration == vec3(0, 0, 0))
-		currentMovement = vec3(0, 0, 0);
-	else {
-
-		currentMovement += currentAcceleration * 0.95f;
-	}
-	
-
-
-	currentAcceleration = -0.05f * currentMovement;
+	currentMovement += currentAcceleration;
+	currentAcceleration = vec3(0, 0, 0);
 
 	currentRotation = nextRotation;
 	nextRotation = vec3(0, 0, 0);
@@ -50,4 +39,20 @@ vec3 PhysicalModel::getCurrentMovement() {
 
 vec3 PhysicalModel::getCurrentRotation() {
 	return this->currentRotation;
+}
+
+vec3 PhysicalModel::getCurrentAcceleration() {
+	return this->currentAcceleration;
+}
+
+void PhysicalModel::setCurrentAcceleration(glm::vec3 currentAcceleration) {
+	this->currentAcceleration = currentAcceleration;
+}
+
+vec3 PhysicalModel::getNextRotation() {
+	return this->nextRotation;
+}
+
+void PhysicalModel::setNextRotation(glm::vec3 nextRotation) {
+	this->nextRotation = nextRotation;
 }
