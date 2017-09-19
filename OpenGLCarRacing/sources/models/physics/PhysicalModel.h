@@ -21,5 +21,6 @@ public:
 
 	glm::vec3 getCurrentMovement();
 	glm::vec3 getCurrentRotation();
+	void stopMovement();
 };
 

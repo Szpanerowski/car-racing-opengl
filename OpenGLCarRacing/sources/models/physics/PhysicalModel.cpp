@@ -22,7 +22,7 @@ void PhysicalModel::applyForce(vec3 forceVector, vec3 pivotShift) {
 
 		pivotShift *= glm::length(forceVector);
 
-		vec3 rotation = vec3(degrees((pivotShift.x)), degrees(asin(pivotShift.y)), degrees(asin(pivotShift.z)));
+		vec3 rotation = vec3(degrees(asin(pivotShift.x)), degrees(asin(pivotShift.y)), degrees(asin(pivotShift.z)));
 		nextRotation += rotation;
 	}
 }
@@ -33,20 +33,13 @@ void PhysicalModel::updatePhysics() {
 		currentMovement = vec3(0, 0, 0);
 	else {
 
-		//temp
-		for (int i = 0;i < 3;i++)
-		{
-			if (currentMovement[i] > 0)
-				currentMovement[i] -= 0.008f;
-			else if (currentMovement[i] < 0)
-				currentMovement[i] += 0.008f;
-		}
 		currentMovement += currentAcceleration * 0.95f;
-		//end temp
 
+		currentMovement.z = currentMovement.z*0.9f;
+		currentMovement.x = currentMovement.x*0.9f;
 	}
-	
-	currentAcceleration = -0.01f * currentMovement;
+
+	currentAcceleration = -0.05f * currentMovement;
 
 	currentRotation = nextRotation;
 	nextRotation = vec3(0, 0, 0);
@@ -58,4 +51,8 @@ vec3 PhysicalModel::getCurrentMovement() {
 
 vec3 PhysicalModel::getCurrentRotation() {
 	return this->currentRotation;
+}
+
+void PhysicalModel::stopMovement() {
+	this->currentMovement = vec3(0, 0, 0);
 }

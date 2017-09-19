@@ -24,5 +24,6 @@ public:
 
 	virtual void update();
 	virtual void render();
+	//virtual std::vector<RaceCar*> getRaceCars();
 };
 

@@ -8,12 +8,21 @@
 #include "drawing/camera/CameraFollowedObject.h"
 
 #include "glm/vec3.hpp"
+#include "math/Intersection.h"
 
 class RaceCarController;
 
 class RaceCar : public RenderedObject, public UpdatedObject, public CameraFollowedObject {
 
 private:
+
+	struct ColliderVertice
+	{
+		float x;
+		float z;
+	};
+	ColliderVertice colliderVertice[4];
+	std::vector<RaceCar*> opponents;
 
 	RaceCarController* controller;
 	PhysicalModel* physicalModel;
@@ -38,4 +47,9 @@ public:
 
 	void setController(RaceCarController* controller);
 	void setModel(Drawable* drawable);
+
+	void updateColliderPosition();
+	void setOpponents(std::vector<RaceCar*> opponents);
+	bool isColliding();
+	void afterCollision();
 };

@@ -22,6 +22,16 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 		float cameraAspect = (float)windowWidth / windowHeight;
 		camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), (float) windowWidth / windowHeight);
 		//camera = new Camera(playerCar, cameraAspect);
+
+		for (RaceCar* raceCar : raceCars) {
+			std::vector<RaceCar*> tempCars;
+			for (RaceCar* raceCarOp : raceCars) {
+				if (raceCarOp != raceCar) {
+					tempCars.push_back(raceCarOp);
+				}
+			}
+			raceCar->setOpponents(tempCars);
+		}
 	}
 }
 

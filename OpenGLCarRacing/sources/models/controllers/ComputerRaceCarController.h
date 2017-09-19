@@ -18,5 +18,6 @@ public:
 	ComputerRaceCarController(RaceCar* raceCar, TerrainLoader* terrainLoader);
 
 	virtual void frameUpdate();
+	virtual bool isColliding();
 };
 

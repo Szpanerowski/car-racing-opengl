@@ -21,6 +21,13 @@ void ComputerRaceCarController::frameUpdate() {
 			bp = bp % 8;
 		getRaceCar()->turn(-0.1);
 	}
+
+	
+}
+
+bool ComputerRaceCarController::isColliding()
+{
+	return false;
 }
 
 bool ComputerRaceCarController::driveForward() {
