@@ -53,6 +53,10 @@ vec3 PhysicalModel::getCurrentRotation() {
 	return this->currentRotation;
 }
 
+void PhysicalModel::setCurrentMovement(glm::vec3 currentMovement) {
+	this->currentMovement = currentMovement;
+}
+
 void PhysicalModel::stopMovement() {
 	this->currentMovement = vec3(0, 0, 0);
 }

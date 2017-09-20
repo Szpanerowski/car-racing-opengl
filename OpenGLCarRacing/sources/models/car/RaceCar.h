@@ -51,5 +51,5 @@ public:
 	void updateColliderPosition();
 	void setOpponents(std::vector<RaceCar*> opponents);
 	bool isColliding();
-	void afterCollision();
+	void afterCollision(RaceCar* opponent);
 };

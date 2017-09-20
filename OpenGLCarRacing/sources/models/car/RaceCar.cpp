@@ -38,7 +38,7 @@ void RaceCar::frameUpdate() {
 	//collisions
 	updateColliderPosition();
 	if (isColliding()) {
-		afterCollision();
+		//afterCollision();
 	}
 
 	vec3 movementVector = physicalModel->getCurrentMovement();
@@ -74,10 +74,15 @@ void RaceCar::setModel(Drawable* carModel) {
 }
 
 void RaceCar::updateColliderPosition() {
-	for (int i = 0; i < 4; i++) {
-		this->colliderVertice[i].x = this->carModel->getPosition().x + 1.0f;
-		this->colliderVertice[i].z = this->carModel->getPosition().z + 1.0f;
-	}
+	float x = 0.5f, z = 0.5f;
+	this->colliderVertice[0].x = this->carModel->getPosition().x + x;
+	this->colliderVertice[0].z = this->carModel->getPosition().z + z;
+	this->colliderVertice[1].x = this->carModel->getPosition().x + -x;
+	this->colliderVertice[1].z = this->carModel->getPosition().z + z;
+	this->colliderVertice[2].x = this->carModel->getPosition().x + -x;
+	this->colliderVertice[2].z = this->carModel->getPosition().z + -z;
+	this->colliderVertice[3].x = this->carModel->getPosition().x + x;
+	this->colliderVertice[3].z = this->carModel->getPosition().z + -z;
 }
 
 void RaceCar::setOpponents(std::vector<RaceCar*> opponents) {
@@ -100,6 +105,7 @@ bool RaceCar::isColliding() {
 				x4 = opponent->colliderVertice[(j + 1) % 4].x;
 				z4 = opponent->colliderVertice[(j + 1) % 4].z;
 				if (inter.isIntersecting(x1, z1, x2, z2, x3, z3, x4, z4)) {
+					afterCollision(opponent);
 					return true;
 				}
 			}
@@ -108,7 +114,13 @@ bool RaceCar::isColliding() {
 	return false;
 }
 
-void RaceCar::afterCollision() {
-	this->physicalModel->stopMovement();
+void RaceCar::afterCollision(RaceCar* opponent) {
+	glm::vec3 opponentMovement, raceCarMovement;
+	opponentMovement = opponent->physicalModel->getCurrentMovement();
+	raceCarMovement = this->physicalModel->getCurrentMovement();
+	this->physicalModel->setCurrentMovement(opponentMovement);
+	opponent->physicalModel->setCurrentMovement(raceCarMovement);
+	this->carModel->move(opponentMovement);
+	opponent->carModel->move(raceCarMovement);
 }
 
