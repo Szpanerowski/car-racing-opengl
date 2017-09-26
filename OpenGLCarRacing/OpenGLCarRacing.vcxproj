@@ -158,6 +158,8 @@
   <ItemGroup>
     <ClCompile Include="sources\drawing\camera\Camera.cpp" />
     <ClCompile Include="sources\math\Intersection.cpp" />
+    <ClCompile Include="sources\models\physics\PhysicalModelMovement.cpp" />
+    <ClCompile Include="sources\models\physics\RaceCarPhysicalModel.cpp" />
     <ClCompile Include="sources\scenes\RaceScene.cpp" />
     <ClCompile Include="sources\racing\Race.cpp" />
     <ClCompile Include="sources\models\physics\PhysicalModel.cpp" />
@@ -171,8 +173,10 @@
     <ClCompile Include="sources\scenes\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sources\models\physics\PhysicalModelMovement.h" />
     <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h" />
     <ClInclude Include="sources\math\Intersection.h" />
+    <ClInclude Include="sources\models\physics\RaceCarPhysicalModel.h" />
     <ClInclude Include="sources\scenes\RaceScene.h" />
     <ClInclude Include="sources\racing\Race.h" />
     <ClInclude Include="sources\drawing\UpdatedObject.h" />

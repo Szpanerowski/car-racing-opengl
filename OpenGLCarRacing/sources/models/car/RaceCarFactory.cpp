@@ -2,6 +2,7 @@
 #include "models/controllers/PlayerRaceCarController.h"
 #include "models/controllers/ComputerRaceCarController.h"
 #include "TerrainLoader.h"
+#include "models/physics/RaceCarPhysicalModel.h"
 
 using namespace glm;
 
@@ -17,9 +18,9 @@ RaceCarFactory* RaceCarFactory::getInstance() {
 
 RaceCarFactory::RaceCarFactory() {}
 
-RaceCar* RaceCarFactory::createPlayerRaceCar(vec3 position) {
+RaceCar* RaceCarFactory::createPlayerRaceCar() {
 	
-	RaceCar* raceCar = createRaceCar(position, "car2");
+	RaceCar* raceCar = createRaceCar("car2");
 	RaceCarController* controller = new PlayerRaceCarController(raceCar);
 
 	raceCar->setController(controller);
@@ -27,9 +28,9 @@ RaceCar* RaceCarFactory::createPlayerRaceCar(vec3 position) {
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createOpponentRaceCar(vec3 position, TerrainLoader* terrainLoader) {
+RaceCar* RaceCarFactory::createOpponentRaceCar(TerrainLoader* terrainLoader) {
 	
-	RaceCar* raceCar = createRaceCar(position, "car");
+	RaceCar* raceCar = createRaceCar("car");
 	RaceCarController* controller = new ComputerRaceCarController(raceCar, terrainLoader);
 
 	raceCar->setController(controller);
@@ -37,14 +38,17 @@ RaceCar* RaceCarFactory::createOpponentRaceCar(vec3 position, TerrainLoader* ter
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createRaceCar(vec3 position, string model) {
+RaceCar* RaceCarFactory::createRaceCar(string model) {
 
-	PhysicalModel* physicalModel = new PhysicalModel();
-	Drawable* carModel = new Drawable(model, position, vec3(0, 0, -1));
-	RaceCar* raceCar = new RaceCar(physicalModel);
-	
+	Drawable* carModel = new Drawable(model, vec3(0, 0, 0), vec3(0, 0, -1));
+	RaceCar* raceCar = new RaceCar(carModel);
 
-	raceCar->setModel(carModel);
+	float carMass = 1000;
+	float carLength = 4;
+	float carWidth = 2;
+
+	RaceCarPhysicalModel* physicalModel = new RaceCarPhysicalModel(raceCar, carMass, carLength, carWidth);
+	raceCar->setPhysicalModel(physicalModel);
 
 	return raceCar;
 }

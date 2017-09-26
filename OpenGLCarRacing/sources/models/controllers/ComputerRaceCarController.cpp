@@ -12,14 +12,14 @@ ComputerRaceCarController::ComputerRaceCarController(RaceCar* raceCar, TerrainLo
 void ComputerRaceCarController::frameUpdate() {
 
 	if (driveForward())
-		getRaceCar()->accelerate(0.01);
+		getRaceCar()->accelerate(1);
 	else if (breakCar())
 	{
-		getRaceCar()->brake(0.01);
+		getRaceCar()->accelerate(-1);
 		bp += 2;
 		if (bp >= 8)
 			bp = bp % 8;
-		getRaceCar()->turn(-0.1);
+		getRaceCar()->turn(-1);
 	}
 
 	

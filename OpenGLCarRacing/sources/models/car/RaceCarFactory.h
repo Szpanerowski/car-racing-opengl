@@ -12,13 +12,13 @@ private:
 	static RaceCarFactory* instance;
 	RaceCarFactory();
 
-	RaceCar* createRaceCar(glm::vec3 position, string texture);
+	RaceCar* createRaceCar(string texture);
 
 public:
 
 	static RaceCarFactory* getInstance();
 
-	RaceCar* createPlayerRaceCar(glm::vec3 position);
-	RaceCar* createOpponentRaceCar(glm::vec3 position, TerrainLoader* terrainLoader);
+	RaceCar* createPlayerRaceCar();
+	RaceCar* createOpponentRaceCar(TerrainLoader* terrainLoader);
 };
 

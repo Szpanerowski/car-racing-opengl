@@ -13,15 +13,18 @@ PlayerRaceCarController::PlayerRaceCarController(RaceCar* raceCar)
 
 void PlayerRaceCarController::frameUpdate() {
 
+	RaceCar* playerCar = getRaceCar();
+	
 	if (turnLeft())
-		getRaceCar()->turn(0.01);
+		playerCar->turn(1);
 	else if (turnRight())
-		getRaceCar()->turn(-0.01);
+		playerCar->turn(-1);
+	else playerCar->turn(0);
 
 	if (driveForward())
-		getRaceCar()->accelerate(0.01);
+		playerCar->accelerate(1);
 	else if (driveBackward())
-		getRaceCar()->brake(0.01);
+		playerCar->accelerate(-1);
 }
 
 bool PlayerRaceCarController::driveForward() {

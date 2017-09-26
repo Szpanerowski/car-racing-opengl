@@ -39,5 +39,5 @@ public:
 	glm::mat4 getViewMatrix();
 	glm::mat4 getProjectionMatrix();
 
-	virtual void frameUpdate();
+	virtual void frameUpdate(float deltaSeconds);
 };

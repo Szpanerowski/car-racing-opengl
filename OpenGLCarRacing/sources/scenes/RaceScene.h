@@ -22,7 +22,7 @@ public:
 
 	RaceScene(Race* race, int windowWidth, int windowHeight);
 
-	virtual void update();
+	virtual void update(float deltaSeconds);
 	virtual void render();
 	//virtual std::vector<RaceCar*> getRaceCars();
 };
