@@ -10,42 +10,47 @@ ComputerRaceCarController::ComputerRaceCarController(RaceCar* raceCar, TerrainLo
 }
 
 void ComputerRaceCarController::frameUpdate() {
+	//TODO 24 i 27 zamienic na wartosci z terrainLoader
+	printf("x : %f | z : %f \n", getRaceCar()->getPosition().x, getRaceCar()->getPosition().z);
 	switch (bp)
 	{
 	case 0:
-		if (getRaceCar()->getPosition().x > 24.5) {
+		if (getRaceCar()->getPosition().x > 21.0) {
 			bp++;
 		}
-		if (getRaceCar()->getRotationY() < 270)
+		if ((getRaceCar()->getRotationY() < 270 || (getRaceCar()->getPosition().z > 3.0f && getRaceCar()->getPosition().x > 3.0))
+			&& getRaceCar()->getPosition().z > 1.0f)
 			turnLeft();
-		else if (getRaceCar()->getRotationY() > 270)
+		else if (getRaceCar()->getRotationY() > 270 || getRaceCar()->getPosition().z < 1.0f)
 			turnRight();
 		break;
 	case 1:
-		if (getRaceCar()->getPosition().z > 24.5) {
+		if (getRaceCar()->getPosition().z > 21.0) {
 			bp++;
 		}
-		if (getRaceCar()->getRotationY() < 180)
+		if ((getRaceCar()->getRotationY() < 180 || (getRaceCar()->getPosition().x < 25.0f && getRaceCar()->getPosition().z > 3.0))
+			&& getRaceCar()->getPosition().x < 26.8f)
 			turnLeft();
-		else if (getRaceCar()->getRotationY() > 180)
+		else if (getRaceCar()->getRotationY() > 180 || getRaceCar()->getPosition().x > 26.8f)
 			turnRight();
 		break;
 	case 2:
-		if (getRaceCar()->getPosition().x < 4.5) {
+		if (getRaceCar()->getPosition().x < 7.0) {
 			bp++;
 		}
-		if (getRaceCar()->getRotationY() < 90)
+		if ((getRaceCar()->getRotationY() < 90 || (getRaceCar()->getPosition().z < 25.0f && getRaceCar()->getPosition().x < 22.0))
+			&& getRaceCar()->getPosition().z < 26.8f)
 			turnLeft();
-		else if (getRaceCar()->getRotationY() > 90)
+		else if (getRaceCar()->getRotationY() > 90 || getRaceCar()->getPosition().z > 26.8f)
 			turnRight();
 		break;
 	case 3:
-		if (getRaceCar()->getPosition().z < 4.5) {
+		if (getRaceCar()->getPosition().z < 7.0) {
 			bp=0;
 		}
-		if (getRaceCar()->getRotationY() > 0 && getRaceCar()->getRotationY() < 180)
+		if (((getRaceCar()->getRotationY() > 0 && getRaceCar()->getRotationY() < 180) || getRaceCar()->getPosition().x < 1.2f) && getRaceCar()->getPosition().x < 2.8f)
 			turnRight();
-		else if (getRaceCar()->getRotationY() > 180)
+		else if ((getRaceCar()->getRotationY() > 180 || getRaceCar()->getPosition().x > 2.8f) && getRaceCar()->getPosition().z < 24.0)
 			turnLeft();
 		break;
 	}
@@ -55,7 +60,7 @@ void ComputerRaceCarController::frameUpdate() {
 		getRaceCar()->accelerate(1);
 	else if (breakCar())
 	{
-		if (getRaceCar()->getPhysicalModel().getCurrentVelocity().z > 0.02)
+		if (getRaceCar()->getPhysicalModel().getCurrentVelocity().z > 0.03)
 		getRaceCar()->accelerate(-1);
 	}
 
@@ -68,7 +73,7 @@ bool ComputerRaceCarController::isColliding()
 }
 
 bool ComputerRaceCarController::driveForward() {
-	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*7.0f;
+	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*8.0f;
 	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x, helperVec.z) == TerrainLoader::Road)
 	{
 		return true;
@@ -78,7 +83,7 @@ bool ComputerRaceCarController::driveForward() {
 }
 
 bool ComputerRaceCarController::breakCar() {
-	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*7.0f;
+	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*8.0f;
 	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x, helperVec.z) != TerrainLoader::Road)
 	{
 		return true;	
