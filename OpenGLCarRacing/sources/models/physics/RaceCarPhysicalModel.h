@@ -11,19 +11,20 @@ private:
 
 	RaceCar* raceCar;
 
-	glm::vec3 calculateEngineForce(float acceleration);
 	glm::vec3 calculateAerodynamicDrag();
 	glm::vec3 calculateRollingResistance();
 
 	static const float AERODYNAMIC_DRAG_CONST;
 	static const float ROLLING_RESISTANCE_CONST;
+	static const float SIDE_RESISTANCE_CONST;
+	static const float GRAVITY_ACCELERATION;
 
-	void applyTurnRotation();
+	void applyLateralForces(float deltaSeconds);
+	glm::vec3 getSideFriction(float deltaSeconds);
 
 public:
 
-	RaceCarPhysicalModel(RaceCar* raceCar, float mass);
+	RaceCarPhysicalModel(RaceCar* raceCar, float mass, float length, float width);
 
-	void updatePhysics();
-	void applyAcceleration(float acceleration);
+	virtual PhysicalModelMovement updatePhysics(float deltaSeconds);
 };

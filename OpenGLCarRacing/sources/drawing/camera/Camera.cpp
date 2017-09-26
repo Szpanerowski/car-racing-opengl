@@ -40,7 +40,7 @@ mat4 Camera::getProjectionMatrix()
 	return this->projectionMatrix;
 }
 
-void Camera::frameUpdate()
+void Camera::frameUpdate(float deltaTime)
 {
 	if (followedObject != nullptr)
 		viewMatrix = calculateViewMatrix();

@@ -21,10 +21,12 @@ private:
 	Drawable* carModel;
 
 	glm::vec3 position;
-	glm::vec3 turnVector;
 	glm::vec3 frontWheelsShift;
+	glm::vec3 rearWheelsShift;
 
-	static const int MAX_TURN_DEGREES = 45;
+	float leftTurnDegrees;
+	float maxTurnDegrees;
+	float engineMaxForce;
 
 	glm::vec3 rotatePhysicalModelVector(glm::vec3);
 
@@ -35,15 +37,20 @@ public:
 	void accelerate(float acceleration);
 	void turn(float turnDirection);
 
-	virtual void frameUpdate();
+	virtual void frameUpdate(float deltaSeconds);
 	virtual void render(glm::mat4 view, glm::mat4 projection);
 
 	glm::vec3 getPosition();
 	glm::vec3 getForwardVector();
-	glm::vec3 getTurnVector();
+
+	void setPosition(glm::vec3 position);
+	void setRotation(glm::vec3 rotation);
+
+	glm::vec3 getFrontWheelsShift();
+	glm::vec3 getRearWheelsShift();
+
+	float getLeftTurnDegrees();
 
 	void setController(RaceCarController* controller);
 	void setPhysicalModel(RaceCarPhysicalModel* physicalModel);
-
-	glm::vec3 getFrontWheelsShift();
 };

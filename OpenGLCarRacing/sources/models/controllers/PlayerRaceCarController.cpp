@@ -22,9 +22,9 @@ void PlayerRaceCarController::frameUpdate() {
 	else playerCar->turn(0);
 
 	if (driveForward())
-		playerCar->accelerate(0.01);
+		playerCar->accelerate(1);
 	else if (driveBackward())
-		playerCar->accelerate(-0.01);
+		playerCar->accelerate(-1);
 }
 
 bool PlayerRaceCarController::driveForward() {

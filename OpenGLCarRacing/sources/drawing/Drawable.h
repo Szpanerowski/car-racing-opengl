@@ -33,13 +33,7 @@ private:
 
 	glm::mat4 calculateRotationMatrix() {
 
-		glm::mat4 rotationMatrix = glm::mat4(1.0f);
-
-		rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation.x), glm::vec3(1, 0, 0));
-		rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation.y), glm::vec3(0, 1, 0));
-		rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation.z), glm::vec3(0, 0, 1));
-		
-		return rotationMatrix;
+		return glm::rotate(glm::mat4(1.0f), glm::radians(rotation.y), glm::vec3(0, 1, 0));
 	}
 
 	Drawable(glm::vec3 position, glm::vec3 forward, glm::vec3 rotation, glm::vec3 scale) {
@@ -102,6 +96,18 @@ public:
 
 	virtual glm::vec3 getPosition() {
 		return this->position;
+	}
+
+	void setPosition(glm::vec3 position) {
+		this->position = position;
+	}
+
+	glm::vec3 getRotation() {
+		return this->rotation;
+	}
+
+	void setRotation(glm::vec3 rotation) {
+		this->rotation = rotation;
 	}
 
 	virtual glm::vec3 getForwardVector() {

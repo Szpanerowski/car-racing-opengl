@@ -4,5 +4,5 @@ class UpdatedObject {
 
 public:
 
-	virtual void frameUpdate() = 0;
+	virtual void frameUpdate(float deltaTime) = 0;
 };

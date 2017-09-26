@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="sources\drawing\camera\Camera.cpp" />
+    <ClCompile Include="sources\models\physics\PhysicalModelMovement.cpp" />
     <ClCompile Include="sources\models\physics\RaceCarPhysicalModel.cpp" />
     <ClCompile Include="sources\scenes\RaceScene.cpp" />
     <ClCompile Include="sources\racing\Race.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="sources\scenes\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sources\models\physics\PhysicalModelMovement.h" />
     <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h" />
     <ClInclude Include="sources\models\physics\RaceCarPhysicalModel.h" />
     <ClInclude Include="sources\scenes\RaceScene.h" />

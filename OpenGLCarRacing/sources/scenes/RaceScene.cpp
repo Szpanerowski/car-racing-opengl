@@ -15,23 +15,25 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 
 	if (!race->isComputerOnly()) {
 
-		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar(vec3(5, 0, 5));
+		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar();
 		raceCars.push_back(playerCar);
 
+		playerCar->setPosition(vec3(2, 0, 2));
+		playerCar->setRotation(vec3(0, 180, 0));
 		
 		camera = new Camera(playerCar, cameraAspect);
 	}
 	else camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), cameraAspect);
 }
 
-void RaceScene::update() {
+void RaceScene::update(float deltaSeconds) {
 
 	for (RaceCar* raceCar : raceCars) {
 
-		raceCar->frameUpdate();
+		raceCar->frameUpdate(deltaSeconds);
 	}
 
-	camera->frameUpdate();
+	camera->frameUpdate(deltaSeconds);
 }
 
 void RaceScene::render() {

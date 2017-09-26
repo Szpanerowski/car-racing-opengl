@@ -11,13 +11,13 @@ private:
 	static RaceCarFactory* instance;
 	RaceCarFactory();
 
-	RaceCar* createRaceCar(glm::vec3 position);
+	RaceCar* createRaceCar();
 
 public:
 
 	static RaceCarFactory* getInstance();
 
-	RaceCar* createPlayerRaceCar(glm::vec3 position);
-	RaceCar* createOpponentRaceCar(glm::vec3 position);
+	RaceCar* createPlayerRaceCar();
+	RaceCar* createOpponentRaceCar();
 };
 
