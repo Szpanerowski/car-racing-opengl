@@ -24,7 +24,6 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 
 		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(terrainLoader);
 		raceCars.push_back(opponentCar);
-
 		opponentCar->setPosition(vec3(4, -0.55f, 2));
 		opponentCar->setRotation(vec3(0, 270, 0));
 

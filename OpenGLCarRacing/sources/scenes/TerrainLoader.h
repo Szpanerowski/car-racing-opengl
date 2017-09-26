@@ -104,6 +104,13 @@ public:
 		return bp[i];
 	}
 
+	float getX() {
+		return x;
+	}
+	float getZ() {
+		return z;
+	}
+
 private:
 	int x;
 	int z;

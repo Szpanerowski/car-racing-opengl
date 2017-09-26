@@ -13,6 +13,8 @@ private:
 	TerrainLoader* terrainLoader;
 	void turnLeft();
 	void turnRight();
+	float maxTerrainX;
+	float maxTerrainZ;
 
 public:
 	ComputerRaceCarController(RaceCar* raceCar, TerrainLoader* terrainLoader);
