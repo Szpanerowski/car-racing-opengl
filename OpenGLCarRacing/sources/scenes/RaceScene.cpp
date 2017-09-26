@@ -25,7 +25,7 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(terrainLoader);
 		raceCars.push_back(opponentCar);
 
-		opponentCar->setPosition(vec3(2.5, -0.5f, 2.5));
+		opponentCar->setPosition(vec3(2.5, 0, 2.5));
 
 		for (RaceCar* raceCar : raceCars) {
 			std::vector<RaceCar*> tempCars;
