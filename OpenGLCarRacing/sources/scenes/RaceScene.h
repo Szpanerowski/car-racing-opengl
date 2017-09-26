@@ -24,5 +24,6 @@ public:
 
 	virtual void update(float deltaSeconds);
 	virtual void render();
+	//virtual std::vector<RaceCar*> getRaceCars();
 };
 

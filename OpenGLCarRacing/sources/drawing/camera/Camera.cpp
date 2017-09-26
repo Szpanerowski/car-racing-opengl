@@ -52,7 +52,7 @@ mat4 Camera::calculateViewMatrix()
 		
 		vec3 followedForward = followedObject->getForwardVector();
 		vec3 followedPosition = followedObject->getPosition();
-		vec3 cameraPosition = followedPosition - followedForward * 3.0f + vec3(0, 2, 0);
+		vec3 cameraPosition = followedPosition - followedForward * 3.0f + vec3(0, 1.5, 0);
 
 		return lookAt(cameraPosition, followedPosition, vec3(0, 1, 0));
 	}

@@ -18,8 +18,25 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar();
 		raceCars.push_back(playerCar);
 
-		playerCar->setPosition(vec3(2, 0, 2));
-		playerCar->setRotation(vec3(0, 180, 0));
+		playerCar->setPosition(vec3(2, -0.55f, 2));
+		playerCar->setRotation(vec3(0, 270, 0));
+
+
+		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(terrainLoader);
+		raceCars.push_back(opponentCar);
+
+		opponentCar->setPosition(vec3(4, -0.55f, 2));
+		opponentCar->setRotation(vec3(0, 270, 0));
+
+		for (RaceCar* raceCar : raceCars) {
+			std::vector<RaceCar*> tempCars;
+			for (RaceCar* raceCarOp : raceCars) {
+				if (raceCarOp != raceCar) {
+					tempCars.push_back(raceCarOp);
+				}
+			}
+			raceCar->setOpponents(tempCars);
+		}
 		
 		camera = new Camera(playerCar, cameraAspect);
 	}
@@ -38,7 +55,7 @@ void RaceScene::update(float deltaSeconds) {
 
 void RaceScene::render() {
 
-	glClearColor(0.5, 0.5, 1, 1);
+	glClearColor(1, 1, 1, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_CULL_FACE);

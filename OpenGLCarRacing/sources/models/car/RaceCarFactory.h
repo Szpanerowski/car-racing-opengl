@@ -3,6 +3,7 @@
 #include "glm/vec3.hpp"
 
 #include "RaceCar.h"
+#include "TerrainLoader.h"
 
 class RaceCarFactory
 {
@@ -11,13 +12,13 @@ private:
 	static RaceCarFactory* instance;
 	RaceCarFactory();
 
-	RaceCar* createRaceCar();
+	RaceCar* createRaceCar(string texture);
 
 public:
 
 	static RaceCarFactory* getInstance();
 
 	RaceCar* createPlayerRaceCar();
-	RaceCar* createOpponentRaceCar();
+	RaceCar* createOpponentRaceCar(TerrainLoader* terrainLoader);
 };
 

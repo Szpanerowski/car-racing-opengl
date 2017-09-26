@@ -27,9 +27,6 @@ protected:
 	glm::vec3 getNextRotation();
 	void setNextRotation(glm::vec3 nextRotation);
 
-	glm::vec3 getCurrentVelocity();
-	glm::vec3 getCurrentRotation();
-
 public:
 
 	static const glm::vec3 PHYSICAL_MODEL_FORWARD;
@@ -37,6 +34,12 @@ public:
 	PhysicalModel(float mass, float length, float width);
 
 	virtual void applyForce(glm::vec3 forceVector, glm::vec3 pivotShift);
+
+	glm::vec3 getCurrentVelocity();
+	glm::vec3 getCurrentRotation();
+	void setCurrentMovement(glm::vec3 currentMovement);
+	void stopMovement();
+
 	virtual PhysicalModelMovement updatePhysics(float deltaSeconds);
 
 	float getMass();

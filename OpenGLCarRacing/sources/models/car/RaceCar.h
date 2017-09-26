@@ -8,6 +8,7 @@
 #include "drawing/camera/CameraFollowedObject.h"
 
 #include "glm/vec3.hpp"
+#include "math/Intersection.h"
 
 class RaceCarController;
 class RaceCarPhysicalModel;
@@ -15,6 +16,15 @@ class RaceCarPhysicalModel;
 class RaceCar : public RenderedObject, public UpdatedObject, public CameraFollowedObject {
 
 private:
+
+	struct ColliderVertice
+	{
+		float x;
+		float z;
+	};
+
+	ColliderVertice colliderVertice[4];
+	std::vector<RaceCar*> opponents;
 
 	RaceCarController* controller;
 	RaceCarPhysicalModel* physicalModel;
@@ -40,8 +50,13 @@ public:
 	virtual void frameUpdate(float deltaSeconds);
 	virtual void render(glm::mat4 view, glm::mat4 projection);
 
-	glm::vec3 getPosition();
-	glm::vec3 getForwardVector();
+	virtual glm::vec3 getPosition();
+	virtual glm::vec3 getForwardVector();
+
+	void updateColliderPosition();
+	void setOpponents(std::vector<RaceCar*> opponents);
+	bool isColliding();
+	void afterCollision(RaceCar* opponent);
 
 	void setPosition(glm::vec3 position);
 	void setRotation(glm::vec3 rotation);
@@ -51,6 +66,10 @@ public:
 
 	float getLeftTurnDegrees();
 
+	RaceCarPhysicalModel getPhysicalModel();
+
 	void setController(RaceCarController* controller);
 	void setPhysicalModel(RaceCarPhysicalModel* physicalModel);
+
+	float getRotationY();
 };

@@ -69,10 +69,11 @@
     <ClCompile Include="sources\drawing\camera\Camera.cpp">
       <Filter>sources\drawing\camera</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="sources\math\Intersection.cpp" />
     <ClCompile Include="sources\models\physics\RaceCarPhysicalModel.cpp">
       <Filter>sources\models\physics</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="sources\models\physics\PhysicalModelMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +134,7 @@
     <ClInclude Include="sources\drawing\model\Shader.h">
       <Filter>sources\drawing\model</Filter>
     </ClInclude>
+    <ClInclude Include="sources\math\Intersection.h" />
     <ClInclude Include="sources\models\physics\RaceCarPhysicalModel.h">
       <Filter>sources\models\physics</Filter>
     </ClInclude>

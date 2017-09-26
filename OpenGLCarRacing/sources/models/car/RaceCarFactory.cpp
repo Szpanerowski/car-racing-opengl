@@ -2,6 +2,7 @@
 #include "models/controllers/PlayerRaceCarController.h"
 #include "models/controllers/ComputerRaceCarController.h"
 #include "models/physics/RaceCarPhysicalModel.h"
+#include "TerrainLoader.h"
 
 using namespace glm;
 
@@ -19,7 +20,7 @@ RaceCarFactory::RaceCarFactory() {}
 
 RaceCar* RaceCarFactory::createPlayerRaceCar() {
 	
-	RaceCar* raceCar = createRaceCar();
+	RaceCar* raceCar = createRaceCar("car2");
 	RaceCarController* controller = new PlayerRaceCarController(raceCar);
 
 	raceCar->setController(controller);
@@ -27,19 +28,19 @@ RaceCar* RaceCarFactory::createPlayerRaceCar() {
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createOpponentRaceCar() {
+RaceCar* RaceCarFactory::createOpponentRaceCar(TerrainLoader* terrainLoader) {
 	
-	RaceCar* raceCar = createRaceCar();
-	RaceCarController* controller = new ComputerRaceCarController(raceCar);
+	RaceCar* raceCar = createRaceCar("car");
+	RaceCarController* controller = new ComputerRaceCarController(raceCar, terrainLoader);
 
 	raceCar->setController(controller);
 	
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createRaceCar() {
+RaceCar* RaceCarFactory::createRaceCar(string model) {
 
-	Drawable* carModel = new Drawable("car2", vec3(0, 0, 0), vec3(0, 0, -1));
+	Drawable* carModel = new Drawable(model, vec3(0, 0, 0), vec3(0, 0, -1));
 	RaceCar* raceCar = new RaceCar(carModel);
 
 	float carMass = 1000;
