@@ -1,5 +1,7 @@
 #include <cstdio>
 
+#define GLM_FORCE_RADIANS
+
 #include "GL/glew.h"
 #include "GL/glut.h"
 #include "GL/freeglut.h"

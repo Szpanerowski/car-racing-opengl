@@ -3,7 +3,7 @@
 #include "drawing/RenderedObject.h"
 #include "drawing/UpdatedObject.h"
 #include "drawing/Drawable.h"
-#include "models/physics/PhysicalModel.h"
+#include "models/physics/RaceCarPhysicalModel.h"
 
 #include "drawing/camera/CameraFollowedObject.h"
 
@@ -11,6 +11,7 @@
 #include "math/Intersection.h"
 
 class RaceCarController;
+class RaceCarPhysicalModel;
 
 class RaceCar : public RenderedObject, public UpdatedObject, public CameraFollowedObject {
 
@@ -25,31 +26,45 @@ private:
 	std::vector<RaceCar*> opponents;
 
 	RaceCarController* controller;
-	PhysicalModel* physicalModel;
-
+	RaceCarPhysicalModel* physicalModel;
 	Drawable* carModel;
+
 	glm::vec3 position;
+	glm::vec3 frontWheelsShift;
+	glm::vec3 rearWheelsShift;
+
+	float leftTurnDegrees;
+	float maxTurnDegrees;
+	float engineMaxForce;
+
+	glm::vec3 rotatePhysicalModelVector(glm::vec3);
 
 public:
 
-	RaceCar();
-	RaceCar(PhysicalModel* physicalModel);
+	RaceCar(Drawable* carModel);
 
 	void accelerate(float acceleration);
-	void brake(float braking);
 	void turn(float turnDirection);
 
-	virtual void frameUpdate();
+	virtual void frameUpdate(float deltaSeconds);
 	virtual void render(glm::mat4 view, glm::mat4 projection);
 
 	virtual glm::vec3 getPosition();
 	virtual glm::vec3 getForwardVector();
 
-	void setController(RaceCarController* controller);
-	void setModel(Drawable* drawable);
-
 	void updateColliderPosition();
 	void setOpponents(std::vector<RaceCar*> opponents);
 	bool isColliding();
 	void afterCollision(RaceCar* opponent);
+
+	void setPosition(glm::vec3 position);
+	void setRotation(glm::vec3 rotation);
+
+	glm::vec3 getFrontWheelsShift();
+	glm::vec3 getRearWheelsShift();
+
+	float getLeftTurnDegrees();
+
+	void setController(RaceCarController* controller);
+	void setPhysicalModel(RaceCarPhysicalModel* physicalModel);
 };

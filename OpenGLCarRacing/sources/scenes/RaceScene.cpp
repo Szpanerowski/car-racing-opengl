@@ -11,17 +11,21 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 	this->terrainLoader = new TerrainLoader(30, 30);
 	this->race = race;
 
+	float cameraAspect = (float)windowWidth / windowHeight;
+
 	if (!race->isComputerOnly()) {
 
-		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar(vec3(-2, -0.5f, 2));
+		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar();
 		raceCars.push_back(playerCar);
 
-		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(vec3(2.5, -0.5f, 2.5), terrainLoader);
+		playerCar->setPosition(vec3(2, 0, 2));
+		playerCar->setRotation(vec3(0, 180, 0));
+
+
+		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(terrainLoader);
 		raceCars.push_back(opponentCar);
 
-		float cameraAspect = (float)windowWidth / windowHeight;
-		camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), (float) windowWidth / windowHeight);
-		//camera = new Camera(playerCar, cameraAspect);
+		opponentCar->setPosition(vec3(2.5, 0, 2.5));
 
 		for (RaceCar* raceCar : raceCars) {
 			std::vector<RaceCar*> tempCars;
@@ -32,17 +36,20 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 			}
 			raceCar->setOpponents(tempCars);
 		}
+		
+		camera = new Camera(playerCar, cameraAspect);
 	}
+	else camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), cameraAspect);
 }
 
-void RaceScene::update() {
+void RaceScene::update(float deltaSeconds) {
 
 	for (RaceCar* raceCar : raceCars) {
 
-		raceCar->frameUpdate();
+		raceCar->frameUpdate(deltaSeconds);
 	}
 
-	camera->frameUpdate();
+	camera->frameUpdate(deltaSeconds);
 }
 
 void RaceScene::render() {

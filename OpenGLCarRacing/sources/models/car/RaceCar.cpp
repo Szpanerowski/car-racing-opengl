@@ -1,39 +1,36 @@
 #include "RaceCar.h"
 #include "models/controllers/RaceCarController.h"
+#include "models/physics/PhysicalModelMovement.h"
+
+#include "glm/gtx/vector_angle.hpp"
 
 #include <cstdio>
 
 using namespace glm;
 
-RaceCar::RaceCar() {
-}
-
-RaceCar::RaceCar(PhysicalModel* physicalModel)
-	: RaceCar() {
+RaceCar::RaceCar(Drawable* carModel) {
 	
-	this->physicalModel = physicalModel;
+	this->carModel = carModel;
+	this->frontWheelsShift = vec3(0, 0, 1);
+	this->rearWheelsShift = vec3(0, 0, -1);
+	this->leftTurnDegrees = 0;
+	this->maxTurnDegrees = 45;
+	this->engineMaxForce = 150;
 }
 
 void RaceCar::accelerate(float acceleration) {
 
-	physicalModel->applyForce(getForwardVector() * acceleration, vec3(0, 0, 0));
+	physicalModel->applyForce(vec3(0, 0, acceleration * engineMaxForce), vec3(0, 0, 0));
 }
 
-void RaceCar::brake(float braking) {
-
-	physicalModel->applyForce(getForwardVector() * -braking, vec3(0, 0, 0));
+void RaceCar::turn(float leftTurnDirection) {
+	this->leftTurnDegrees = leftTurnDirection * maxTurnDegrees;
 }
 
-void RaceCar::turn(float turnLeftDirection) {
-
-	physicalModel->applyForce(getForwardVector(), vec3(0, 1, 0) * turnLeftDirection);
-}
-
-void RaceCar::frameUpdate() {
+void RaceCar::frameUpdate(float deltaSeconds) {
 
 	controller->frameUpdate();
-
-	physicalModel->updatePhysics();
+	PhysicalModelMovement modelMovement = physicalModel->updatePhysics(deltaSeconds);
 
 	//collisions
 	updateColliderPosition();
@@ -41,13 +38,12 @@ void RaceCar::frameUpdate() {
 		//afterCollision();
 	}
 
-	vec3 movementVector = physicalModel->getCurrentMovement();
-	carModel->move(movementVector);
+	vec3 velocityVector = modelMovement.velocity;
+	vec3 rotatedVelocityVector = rotatePhysicalModelVector(velocityVector);
+	carModel->move(rotatedVelocityVector);
 
-	vec3 rotationVector = physicalModel->getCurrentRotation();
-
+	vec3 rotationVector = modelMovement.rotation;
 	carModel->rotate(rotationVector);
-
 }
 
 void RaceCar::render(mat4 view, mat4 projection) {
@@ -64,13 +60,28 @@ vec3 RaceCar::getForwardVector()
 	return carModel->getForwardVector();
 }
 
-void RaceCar::setController(RaceCarController* controller) {
-	this->controller = controller;
+void RaceCar::setPosition(vec3 position) {
+	carModel->setPosition(position);
 }
 
-void RaceCar::setModel(Drawable* carModel) {
-	this->carModel = carModel;
-	this->carModel->move(this->position);
+void RaceCar::setRotation(vec3 rotation) {
+	carModel->setRotation(rotation);
+}
+
+float RaceCar::getLeftTurnDegrees() {
+	return this->leftTurnDegrees;
+}
+
+vec3 RaceCar::getFrontWheelsShift() {
+	return this->frontWheelsShift;
+}
+
+vec3 RaceCar::getRearWheelsShift() {
+	return this->rearWheelsShift;
+}
+
+void RaceCar::setController(RaceCarController* controller) {
+	this->controller = controller;
 }
 
 void RaceCar::updateColliderPosition() {
@@ -116,11 +127,28 @@ bool RaceCar::isColliding() {
 
 void RaceCar::afterCollision(RaceCar* opponent) {
 	glm::vec3 opponentMovement, raceCarMovement;
-	opponentMovement = opponent->physicalModel->getCurrentMovement();
-	raceCarMovement = this->physicalModel->getCurrentMovement();
+	opponentMovement = opponent->physicalModel->getCurrentVelocity();
+	raceCarMovement = this->physicalModel->getCurrentVelocity();
 	this->physicalModel->setCurrentMovement(opponentMovement);
 	opponent->physicalModel->setCurrentMovement(raceCarMovement);
 	this->carModel->move(opponentMovement);
 	opponent->carModel->move(raceCarMovement);
 }
 
+void RaceCar::setPhysicalModel(RaceCarPhysicalModel* physicalModel) {
+	this->physicalModel = physicalModel;
+}
+
+vec3 RaceCar::rotatePhysicalModelVector(vec3 vector) {
+
+	vec3 physicalModelVector = PhysicalModel::PHYSICAL_MODEL_FORWARD;
+	vec3 forward = carModel->getForwardVector();
+
+	vec2 firstVector = normalize(vec2(physicalModelVector.z, physicalModelVector.x));
+	vec2 secondVector = normalize(vec2(forward.z, forward.x));
+
+	float rotationAngle = orientedAngle(firstVector, secondVector);
+	vec3 result = rotate(mat4(1.0f), rotationAngle, vec3(0, 1, 0)) * vec4(vector, 0);
+
+	return result;
+}

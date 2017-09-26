@@ -24,27 +24,16 @@ private:
 	
 		glm::mat4 model = glm::mat4(1.0f);
 
-		model = glm::scale(model, scaleFactor);
 		model = glm::translate(model, position);
 		model = model * calculateRotationMatrix();
-	
+		model = glm::scale(model, scaleFactor);
 
 		return model;
 	}
 
 	glm::mat4 calculateRotationMatrix() {
 
-		glm::mat4 rotationMatrix = glm::mat4();
-
-		for (int i = 0; i < 3; ++i) {
-
-			glm::vec3 axis = glm::vec3(0, 0, 0);
-			axis[i] = 1;
-
-			rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation[i]), axis);
-		}
-
-		return rotationMatrix;
+		return glm::rotate(glm::mat4(1.0f), glm::radians(rotation.y), glm::vec3(0, 1, 0));
 	}
 
 	Drawable(glm::vec3 position, glm::vec3 forward, glm::vec3 rotation, glm::vec3 scale) {
@@ -52,12 +41,11 @@ private:
 		this->position = position;
 		this->rotation = rotation;
 		this->scaleFactor = scale;
-		this->initialForwardVector = forward;
+
+		this->initialForwardVector = calculateRotationMatrix() * glm::vec4(forward, 0);
 	}
 
 public:
-
-	
 
 	Drawable(std::string name, glm::vec3 position = glm::vec3(0, 0, 0), glm::vec3 forward = glm::vec3(0, 0, 1), glm::vec3 rotation = glm::vec3(0, 0, 0), glm::vec3 scale = glm::vec3(1, 1, 1))
 			: Drawable(position, forward, rotation, scale) {
@@ -91,16 +79,42 @@ public:
 	void rotate(glm::vec3 rotation) {
 
 		this->rotation += rotation;
+		
+		for (int i = 0; i < 3; ++i) {
+
+			float rot = this->rotation[i];
+			long long div = rot / 360;
+
+			rot -= div * 360;
+
+			if (rot < 0)
+				rot += 360;
+
+			this->rotation[i] = rot;
+		}
 	}
 
 	virtual glm::vec3 getPosition() {
 		return this->position;
 	}
 
+	void setPosition(glm::vec3 position) {
+		this->position = position;
+	}
+
+	glm::vec3 getRotation() {
+		return this->rotation;
+	}
+
+	void setRotation(glm::vec3 rotation) {
+		this->rotation = rotation;
+	}
+
 	virtual glm::vec3 getForwardVector() {
 
 		glm::vec4 forwardVector4 = calculateRotationMatrix() * glm::vec4(initialForwardVector, 0);
+		glm::vec3 result = glm::normalize(glm::vec3(forwardVector4));
 
-		return glm::normalize(glm::vec3(forwardVector4));
+		return result;
 	}
 };
