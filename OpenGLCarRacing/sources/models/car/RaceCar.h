@@ -69,4 +69,6 @@ public:
 
 	void setController(RaceCarController* controller);
 	void setPhysicalModel(RaceCarPhysicalModel* physicalModel);
+
+	float getRotationY();
 };

@@ -9,10 +9,10 @@ private:
 
 	bool driveForward();
 	bool breakCar();
-	bool turnLeft();
-	bool turnRight();
 	int bp;
 	TerrainLoader* terrainLoader;
+	void turnLeft();
+	void turnRight();
 
 public:
 	ComputerRaceCarController(RaceCar* raceCar, TerrainLoader* terrainLoader);

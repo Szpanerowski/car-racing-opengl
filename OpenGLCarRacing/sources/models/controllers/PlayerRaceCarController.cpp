@@ -12,7 +12,7 @@ PlayerRaceCarController::PlayerRaceCarController(RaceCar* raceCar)
 }
 
 void PlayerRaceCarController::frameUpdate() {
-
+	//printf("x : %f | z : %f \n", getRaceCar()->getPosition().x, getRaceCar()->getPosition().z);
 	RaceCar* playerCar = getRaceCar();
 	
 	if (turnLeft())

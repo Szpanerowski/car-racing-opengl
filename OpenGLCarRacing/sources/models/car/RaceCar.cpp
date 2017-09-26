@@ -159,3 +159,7 @@ RaceCarPhysicalModel RaceCar::getPhysicalModel()
 {
 	return *physicalModel;
 }
+
+float RaceCar::getRotationY() {
+	return carModel->getRotation().y;
+}
