@@ -19,8 +19,10 @@ RaceCar::RaceCar(Drawable* carModel) {
 }
 
 void RaceCar::accelerate(float acceleration) {
-
-	physicalModel->applyForce(vec3(0, 0, acceleration * engineMaxForce), vec3(0, 0, 0));
+	if (acceleration * physicalModel->getCurrentVelocity().z < 0)
+		physicalModel->applyForce(vec3(0, 0, acceleration * (engineMaxForce*3)), vec3(0, 0, 0));
+	else
+		physicalModel->applyForce(vec3(0, 0, acceleration * engineMaxForce), vec3(0, 0, 0));
 }
 
 void RaceCar::turn(float leftTurnDirection) {
@@ -151,4 +153,9 @@ vec3 RaceCar::rotatePhysicalModelVector(vec3 vector) {
 	vec3 result = rotate(mat4(1.0f), rotationAngle, vec3(0, 1, 0)) * vec4(vector, 0);
 
 	return result;
+}
+
+RaceCarPhysicalModel RaceCar::getPhysicalModel()
+{
+	return *physicalModel;
 }

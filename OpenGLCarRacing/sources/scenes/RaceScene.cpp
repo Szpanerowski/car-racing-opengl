@@ -18,14 +18,15 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 		RaceCar* playerCar = RaceCarFactory::getInstance()->createPlayerRaceCar();
 		raceCars.push_back(playerCar);
 
-		playerCar->setPosition(vec3(2, 0, 2));
-		playerCar->setRotation(vec3(0, 180, 0));
+		playerCar->setPosition(vec3(2, -0.55f, 2));
+		playerCar->setRotation(vec3(0, 270, 0));
 
 
 		RaceCar* opponentCar = RaceCarFactory::getInstance()->createOpponentRaceCar(terrainLoader);
 		raceCars.push_back(opponentCar);
 
-		opponentCar->setPosition(vec3(2.5, 0, 2.5));
+		opponentCar->setPosition(vec3(4, -0.55f, 2));
+		opponentCar->setRotation(vec3(0, 270, 0));
 
 		for (RaceCar* raceCar : raceCars) {
 			std::vector<RaceCar*> tempCars;

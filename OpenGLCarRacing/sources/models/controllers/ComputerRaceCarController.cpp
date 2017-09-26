@@ -19,7 +19,10 @@ void ComputerRaceCarController::frameUpdate() {
 		bp += 2;
 		if (bp >= 8)
 			bp = bp % 8;
-		getRaceCar()->turn(-1);
+		if(getRaceCar()->getPhysicalModel().getCurrentVelocity().z>0)
+			getRaceCar()->turn(-1);
+		else if (getRaceCar()->getPhysicalModel().getCurrentVelocity().z<0)
+			getRaceCar()->turn(1);
 	}
 
 	
@@ -31,17 +34,23 @@ bool ComputerRaceCarController::isColliding()
 }
 
 bool ComputerRaceCarController::driveForward() {
-	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*3.0f;
-	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x, helperVec.z) == TerrainLoader::Road)
+	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*6.0f;
+	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x-1, helperVec.z) == TerrainLoader::Road)
+	{
+		printf("ROAD x : %f | z : %f \n", helperVec.x, helperVec.z);
 		return true;
+	}
 	else
 		return false;
 }
 
 bool ComputerRaceCarController::breakCar() {
-	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*3.0f;
-	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x, helperVec.z) != TerrainLoader::Road)
-		return true;
+	vec3 helperVec = getRaceCar()->getPosition() + getRaceCar()->getForwardVector()*6.0f;
+	if (ComputerRaceCarController::terrainLoader->getTerrainType(helperVec.x-1, helperVec.z) != TerrainLoader::Road)
+	{
+		printf("GRASS x : %f | z : %f \n", helperVec.x, helperVec.z);
+		return true;	
+	}
 	else
 		return false;
 }
