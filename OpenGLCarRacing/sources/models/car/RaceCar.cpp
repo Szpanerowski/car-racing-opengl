@@ -138,8 +138,10 @@ void RaceCar::afterCollision(RaceCar* opponent) {
 	raceCarMovement = this->physicalModel->getCurrentVelocity();
 	this->physicalModel->setCurrentMovement(opponentMovement);
 	opponent->physicalModel->setCurrentMovement(raceCarMovement);
-	this->carModel->move(opponentMovement);
-	opponent->carModel->move(raceCarMovement);
+	opponent->physicalModel->setCurrentVelocity(raceCarMovement);
+	this->physicalModel->setCurrentVelocity(opponentMovement);
+	//this->carModel->move(opponentMovement);
+	//opponent->carModel->move(raceCarMovement);
 }
 
 void RaceCar::setPhysicalModel(RaceCarPhysicalModel* physicalModel) {

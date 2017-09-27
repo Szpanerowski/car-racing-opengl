@@ -40,6 +40,8 @@ public:
 	void setCurrentMovement(glm::vec3 currentMovement);
 	void stopMovement();
 
+	void setCurrentVelocity(glm::vec3 currentVelocity);
+
 	virtual PhysicalModelMovement updatePhysics(float deltaSeconds);
 
 	float getMass();

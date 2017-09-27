@@ -12,7 +12,6 @@ ComputerRaceCarController::ComputerRaceCarController(RaceCar* raceCar, TerrainLo
 }
 
 void ComputerRaceCarController::frameUpdate() {
-	printf("x : %f | z : %f | Bp : %d \n", getRaceCar()->getPosition().x, getRaceCar()->getPosition().z, bp);
 	switch (bp)
 	{
 	case 0:

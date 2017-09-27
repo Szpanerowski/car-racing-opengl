@@ -83,3 +83,7 @@ void PhysicalModel::setNextRotation(glm::vec3 nextRotation) {
 float PhysicalModel::getMass() {
 	return this->mass;
 }
+
+void PhysicalModel::setCurrentVelocity(glm::vec3 currentVelocity) {
+	this->currentVelocity = currentVelocity;
+}
