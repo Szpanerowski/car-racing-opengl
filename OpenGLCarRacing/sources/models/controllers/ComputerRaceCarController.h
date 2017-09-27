@@ -21,5 +21,6 @@ public:
 
 	virtual void frameUpdate();
 	virtual bool isColliding();
+	void setBp(int bp);
 };
 

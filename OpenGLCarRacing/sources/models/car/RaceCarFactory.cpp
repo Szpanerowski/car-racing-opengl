@@ -28,13 +28,22 @@ RaceCar* RaceCarFactory::createPlayerRaceCar() {
 	return raceCar;
 }
 
-RaceCar* RaceCarFactory::createOpponentRaceCar(TerrainLoader* terrainLoader) {
-	
+RaceCar* RaceCarFactory::createOpponentRaceCar(TerrainLoader* terrainLoader, int bp) {
 	RaceCar* raceCar = createRaceCar("car");
-	RaceCarController* controller = new ComputerRaceCarController(raceCar, terrainLoader);
-
+	ComputerRaceCarController* controller = new ComputerRaceCarController(raceCar, terrainLoader);
+	controller->setBp(bp);
 	raceCar->setController(controller);
 	
+	return raceCar;
+}
+
+RaceCar* RaceCarFactory::createOpponentRaceCar(TerrainLoader* terrainLoader) {
+
+	RaceCar* raceCar = createRaceCar("car");
+	ComputerRaceCarController* controller = new ComputerRaceCarController(raceCar, terrainLoader);
+	controller->setBp(0);
+	raceCar->setController(controller);
+
 	return raceCar;
 }
 

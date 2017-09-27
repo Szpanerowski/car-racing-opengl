@@ -19,7 +19,7 @@ void ComputerRaceCarController::frameUpdate() {
 			bp++;
 			break;
 		}
-		if (((getRaceCar()->getRotationY() < 270 && getRaceCar()->getRotationY() > 100) || getRaceCar()->getPosition().z > 3.5f)
+		if (((getRaceCar()->getRotationY() < 270 && getRaceCar()->getRotationY() > 100) || getRaceCar()->getPosition().z > 2.9f)
 			&& getRaceCar()->getPosition().x > 4.0f)
 			turnLeft();
 		else if (getRaceCar()->getRotationY() > 270 || getRaceCar()->getRotationY() < 100 || getRaceCar()->getPosition().z < 1.5f)
@@ -30,7 +30,7 @@ void ComputerRaceCarController::frameUpdate() {
 			bp++;
 			break;
 		}
-		if ((getRaceCar()->getRotationY() < 180 || getRaceCar()->getPosition().x < (maxTerrainX - 5.0f))
+		if ((getRaceCar()->getRotationY() < 180 || getRaceCar()->getPosition().x < (maxTerrainX - 4.8f))
 			&& getRaceCar()->getPosition().z > (4.0f))
 			turnLeft();
 		else if (getRaceCar()->getRotationY() > 180 || getRaceCar()->getPosition().x > (maxTerrainX - 3.2f))
@@ -41,7 +41,7 @@ void ComputerRaceCarController::frameUpdate() {
 			bp++;
 			break;
 		}
-		if ((getRaceCar()->getRotationY() < 90 || getRaceCar()->getPosition().z < (maxTerrainZ - 5.0f))
+		if ((getRaceCar()->getRotationY() < 90 || getRaceCar()->getPosition().z < (maxTerrainZ - 4.8f))
 			&& getRaceCar()->getPosition().x < (maxTerrainX - 5.0f))
 			turnLeft();
 		else if (getRaceCar()->getRotationY() > 90 || getRaceCar()->getPosition().z >(maxTerrainZ - 3.2f))
@@ -108,4 +108,8 @@ void ComputerRaceCarController::turnRight() {
 		getRaceCar()->turn(-1);
 	else if (getRaceCar()->getPhysicalModel().getCurrentVelocity().z<0)
 		getRaceCar()->turn(1);
+}
+
+void ComputerRaceCarController::setBp(int bp) {
+	this->bp = bp;
 }

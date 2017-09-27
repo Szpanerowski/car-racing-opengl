@@ -20,5 +20,6 @@ public:
 
 	RaceCar* createPlayerRaceCar();
 	RaceCar* createOpponentRaceCar(TerrainLoader* terrainLoader);
+	RaceCar* createOpponentRaceCar(TerrainLoader* terrainLoader, int bp);
 };
 
