@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sources\drawing\lighting\Lighting.cpp" />
     <ClCompile Include="sources\drawing\camera\Camera.cpp" />
     <ClCompile Include="sources\math\Intersection.cpp" />
     <ClCompile Include="sources\models\physics\PhysicalModelMovement.cpp" />
@@ -173,6 +174,9 @@
     <ClCompile Include="sources\scenes\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sources\drawing\lighting\CachedLighting.h" />
+    <ClInclude Include="sources\drawing\lighting\Lighting.h" />
+    <ClInclude Include="sources\drawing\lighting\CarLightSource.h" />
     <ClInclude Include="sources\models\physics\PhysicalModelMovement.h" />
     <ClInclude Include="sources\drawing\camera\CameraFollowedObject.h" />
     <ClInclude Include="sources\math\Intersection.h" />

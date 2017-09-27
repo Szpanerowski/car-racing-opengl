@@ -7,6 +7,7 @@
 #include "racing/Race.h"
 #include "Scene.h"
 #include "scenes/TerrainLoader.h"
+#include "drawing/lighting/Lighting.h"
 
 class RaceScene : public Scene
 {
@@ -14,9 +15,12 @@ private:
 
 	TerrainLoader* terrainLoader;
 	Camera* camera;
+	Lighting* lighting;
 	Race* race;
 
 	std::vector<RaceCar*> raceCars;
+
+	std::vector<CarLightSource> collectCarLights();
 
 public:
 
@@ -24,6 +28,5 @@ public:
 
 	virtual void update(float deltaSeconds);
 	virtual void render();
-	//virtual std::vector<RaceCar*> getRaceCars();
 };
 

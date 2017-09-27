@@ -51,16 +51,20 @@ mat4 Camera::calculateViewMatrix()
 	if (followedObject != nullptr) {
 		
 		vec3 followedForward = followedObject->getForwardVector();
-		vec3 followedPosition = followedObject->getPosition();
-		vec3 cameraPosition = followedPosition - followedForward * 3.0f + vec3(0, 1.5, 0);
 
-		return lookAt(cameraPosition, followedPosition, vec3(0, 1, 0));
+		focus = followedObject->getPosition();
+		position = focus - followedForward * 3.0f + vec3(0, 1.5, 0);
+		nose = vec3(0, 1, 0);
 	}
-	else
-		return lookAt(position, focus, nose);
+	
+	return lookAt(position, focus, nose);
 }
 
 mat4 Camera::createProjectionMatrix()
 {
 	return perspective(fovy, aspect, nearPlane, farPlane);
+}
+
+vec3 Camera::getPosition() {
+	return this->position;
 }

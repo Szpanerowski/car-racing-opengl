@@ -9,6 +9,7 @@
 #include <cstdio>
 
 using namespace glm;
+using namespace std;
 
 RaceCar::RaceCar(Drawable* carModel) {
 	
@@ -53,8 +54,8 @@ void RaceCar::frameUpdate(float deltaSeconds) {
 	carModel->rotate(rotationVector);
 }
 
-void RaceCar::render(mat4 view, mat4 projection) {
-	carModel->draw(view, projection);
+void RaceCar::render(mat4 view, mat4 projection, CachedLighting* lighting) {
+	carModel->draw(view, projection, lighting);
 }
 
 vec3 RaceCar::getPosition()
@@ -167,4 +168,19 @@ RaceCarPhysicalModel RaceCar::getPhysicalModel()
 
 float RaceCar::getRotationY() {
 	return carModel->getRotation().y;
+}
+
+vector<CarLightSource> RaceCar::getCarLights() {
+
+	vector<CarLightSource> carLights;
+
+	vec3 forward = getForwardVector();
+	vec3 lightsShift = forward * 0.5f + vec3(0, 1.0f, 0);
+	vec3 sideShift = normalize(vec3(forward.z, 0, -forward.x)) * 0.5f;
+	float angle = 30;
+
+	carLights.push_back(CarLightSource(getPosition() + lightsShift + sideShift, forward - vec3(0, 0.25, 0), angle));
+	carLights.push_back(CarLightSource(getPosition() + lightsShift - sideShift, forward - vec3(0, 0.25, 0), angle));
+
+	return carLights;
 }
