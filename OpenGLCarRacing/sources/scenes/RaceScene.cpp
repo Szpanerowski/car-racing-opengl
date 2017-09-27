@@ -4,6 +4,8 @@
 #include "gl/freeglut.h"
 #include "glm/vec3.hpp"
 
+#include <algorithm>
+
 using namespace glm;
 
 RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
@@ -50,6 +52,9 @@ RaceScene::RaceScene(Race* race, int windowWidth, int windowHeight) {
 		camera = new Camera(playerCar, cameraAspect);
 	}
 	else camera = new Camera(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 1, 0), cameraAspect);
+
+	vec3 sceneAmbient = vec3(0.2, 0.2, 0.2);
+	lighting = new Lighting(sceneAmbient);
 }
 
 void RaceScene::update(float deltaSeconds) {
@@ -64,7 +69,7 @@ void RaceScene::update(float deltaSeconds) {
 
 void RaceScene::render() {
 
-	glClearColor(1, 1, 1, 1);
+	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_CULL_FACE);
@@ -72,12 +77,32 @@ void RaceScene::render() {
 
 	glEnable(GL_DEPTH_TEST);
 
-	terrainLoader->draw(camera->getViewMatrix(), camera->getProjectionMatrix());
+	lighting->setCarLightSources(collectCarLights());
+	lighting->setViewerPosition(camera->getPosition());
+
+	CachedLighting* cachedLighting = new CachedLighting(lighting);
+
+	terrainLoader->draw(camera->getViewMatrix(), camera->getProjectionMatrix(), cachedLighting);
 
 	for (RaceCar* raceCar : raceCars) {
 
-		raceCar->render(camera->getViewMatrix(), camera->getProjectionMatrix());
+		raceCar->render(camera->getViewMatrix(), camera->getProjectionMatrix(), cachedLighting);
 	}
 
+	delete cachedLighting;
+
 	glutSwapBuffers();
+}
+
+vector<CarLightSource> RaceScene::collectCarLights() {
+
+	vector<CarLightSource> carLights;
+
+	for (RaceCar* raceCar : raceCars) {
+
+		vector<CarLightSource> lights = raceCar->getCarLights();
+		carLights.insert(carLights.end(), lights.begin(), lights.end());
+	}
+
+	return carLights;
 }

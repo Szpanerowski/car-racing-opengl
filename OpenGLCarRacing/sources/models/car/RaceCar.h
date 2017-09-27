@@ -4,11 +4,13 @@
 #include "drawing/UpdatedObject.h"
 #include "drawing/Drawable.h"
 #include "models/physics/RaceCarPhysicalModel.h"
-
 #include "drawing/camera/CameraFollowedObject.h"
+#include "drawing/lighting/CarLightSource.h"
 
 #include "glm/vec3.hpp"
 #include "math/Intersection.h"
+
+#include <vector>
 
 class RaceCarController;
 class RaceCarPhysicalModel;
@@ -48,7 +50,7 @@ public:
 	void turn(float turnDirection);
 
 	virtual void frameUpdate(float deltaSeconds);
-	virtual void render(glm::mat4 view, glm::mat4 projection);
+	virtual void render(glm::mat4 view, glm::mat4 projection, CachedLighting* lighting);
 
 	virtual glm::vec3 getPosition();
 	virtual glm::vec3 getForwardVector();
@@ -72,4 +74,6 @@ public:
 	void setPhysicalModel(RaceCarPhysicalModel* physicalModel);
 
 	float getRotationY();
+
+	std::vector<CarLightSource> getCarLights();
 };

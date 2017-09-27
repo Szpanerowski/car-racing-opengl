@@ -3,6 +3,8 @@
 #include "Model.h"
 #include "Drawable.h"
 
+#include "drawing/lighting/CachedLighting.h"
+
 #include <vector>
 
 /*
@@ -48,7 +50,7 @@ public:
 			{
 				//rysowanie drogi na krawedziach
 				if ((i == 2 || i == x-4 ||  j==2 || j==z-4) && i!=0 && j!=0 && i!=x-2 && j!=z-2) {
-					Drawable* d = new Drawable("road");
+					Drawable* d = new Drawable("road", "terrain");
 					//d.scale(0.1, 1, 0.1);
 					d->move(glm::vec3(i, -0.5, j));
 					vecTerrain.push_back(d);
@@ -59,7 +61,7 @@ public:
 				}
 				//rysowanie trawy na reszcie pola
 				else { 
-					Drawable* d = new Drawable("terrain");
+					Drawable* d = new Drawable("terrain", "terrain");
 					//d.scale(0.1, 1, 0.1);
 					d->move(glm::vec3(i, -0.5, j));
 					vecTerrain.push_back(d);
@@ -70,9 +72,9 @@ public:
 
 	}
 
-	void draw(glm::mat4 view, glm::mat4 projection) {
+	void draw(glm::mat4 view, glm::mat4 projection, CachedLighting* lighting) {
 		for (int i = 0; i < vecTerrain.size(); i++) {
-			vecTerrain.at(i)->draw(view, projection);
+			vecTerrain.at(i)->draw(view, projection, lighting);
 		}
 	}
 

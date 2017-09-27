@@ -49,7 +49,7 @@ RaceCar* RaceCarFactory::createOpponentRaceCar(TerrainLoader* terrainLoader) {
 
 RaceCar* RaceCarFactory::createRaceCar(string model) {
 
-	Drawable* carModel = new Drawable(model, vec3(0, 0, 0), vec3(0, 0, -1));
+	Drawable* carModel = new Drawable(model, "race_car", vec3(0, 0, 0), vec3(0, 0, -1));
 	RaceCar* raceCar = new RaceCar(carModel);
 
 	float carMass = 1000;

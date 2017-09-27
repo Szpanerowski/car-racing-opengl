@@ -75,6 +75,7 @@
       <Filter>sources\models\physics</Filter>
     </ClCompile>
     <ClCompile Include="sources\models\physics\PhysicalModelMovement.cpp" />
+    <ClCompile Include="sources\drawing\lighting\Lighting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\scenes\RaceScene.h">
@@ -141,5 +142,8 @@
     <ClInclude Include="sources\models\physics\PhysicalModelMovement.h">
       <Filter>sources\models\physics</Filter>
     </ClInclude>
+    <ClInclude Include="sources\drawing\lighting\CarLightSource.h" />
+    <ClInclude Include="sources\drawing\lighting\Lighting.h" />
+    <ClInclude Include="sources\drawing\lighting\CachedLighting.h" />
   </ItemGroup>
 </Project>

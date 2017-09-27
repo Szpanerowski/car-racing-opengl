@@ -36,8 +36,10 @@ public:
 	Camera(glm::vec3 position, glm::vec3 focus, glm::vec3 nose, float aspect, float fovy = 45.0f, float near = 0.1f, float far = 100.0f);
 	Camera(CameraFollowedObject* followedObject, float aspect, float fovy = 45.0f, float near = 0.1f, float far = 100.0f);
 
+	virtual void frameUpdate(float deltaSeconds);
+
 	glm::mat4 getViewMatrix();
 	glm::mat4 getProjectionMatrix();
 
-	virtual void frameUpdate(float deltaSeconds);
+	glm::vec3 getPosition();
 };
