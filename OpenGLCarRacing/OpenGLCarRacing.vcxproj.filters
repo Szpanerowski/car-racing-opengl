@@ -2,37 +2,43 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="sources\scenes">
-      <UniqueIdentifier>{42bed0f1-229e-4dcb-95eb-1f76910f25cb}</UniqueIdentifier>
+      <UniqueIdentifier>{b1c69408-040e-4be3-828c-7770ebd5fea3}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources">
-      <UniqueIdentifier>{3e520d27-9306-4c77-9658-70e8fdd0baf9}</UniqueIdentifier>
+      <UniqueIdentifier>{7f84f965-8ed2-4057-be28-273df0aacc0b}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\racing">
-      <UniqueIdentifier>{425bc029-1756-4bff-b69d-94fc5e9063fd}</UniqueIdentifier>
+      <UniqueIdentifier>{bb8bc489-f762-493b-9584-1a11be851852}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\physics">
-      <UniqueIdentifier>{4212af5c-7139-40b5-8f07-b016896c7c49}</UniqueIdentifier>
+      <UniqueIdentifier>{5dc861a4-f311-42a8-a908-826a8b0f9768}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models">
-      <UniqueIdentifier>{f7c184b0-b45a-4784-a244-bd9df3934fbe}</UniqueIdentifier>
+      <UniqueIdentifier>{da9d60f1-c00a-48ec-8ec1-80dceb6d490b}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\car">
-      <UniqueIdentifier>{55edccc6-054e-4157-a003-ec48edb43539}</UniqueIdentifier>
+      <UniqueIdentifier>{8a8371b7-5eaf-45a5-a7b5-8b2b8c145bd3}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\models\controllers">
-      <UniqueIdentifier>{5b1d089f-2cf8-4d10-bfa5-478f53958f24}</UniqueIdentifier>
+      <UniqueIdentifier>{6818e13a-2475-4376-b28c-9296d8571d43}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\input">
-      <UniqueIdentifier>{fcf5572d-20bb-4cd3-9d4b-f4f6e595e0ec}</UniqueIdentifier>
+      <UniqueIdentifier>{2525d816-ce4c-4148-8cff-0447338e673a}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing\camera">
-      <UniqueIdentifier>{bf5166c0-3b83-4aec-9ee1-e0fbaa564166}</UniqueIdentifier>
+      <UniqueIdentifier>{8a7d0be5-bed0-4289-bc65-bac6601f7f2d}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing">
-      <UniqueIdentifier>{b0ca3634-0284-4af5-a583-47267d5ae2d2}</UniqueIdentifier>
+      <UniqueIdentifier>{be3ecc10-19d8-4dfe-a1a8-523a676fe437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\drawing\lighting">
+      <UniqueIdentifier>{e57eb2d4-8d89-453d-acbd-f86e0271b2e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\math">
+      <UniqueIdentifier>{389f09b0-71f9-42ce-868e-482461e32f1a}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\drawing\model">
-      <UniqueIdentifier>{4a9d5da0-352b-43ee-9192-aafb945a675c}</UniqueIdentifier>
+      <UniqueIdentifier>{68e20304-1428-400d-b054-4fbde41c3bf8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="sources\racing\Race.cpp">
       <Filter>sources\racing</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\physics\RaceCarPhysicalModel.cpp">
+      <Filter>sources\models\physics</Filter>
     </ClCompile>
     <ClCompile Include="sources\models\physics\PhysicalModel.cpp">
       <Filter>sources\models\physics</Filter>
@@ -69,13 +78,15 @@
     <ClCompile Include="sources\drawing\camera\Camera.cpp">
       <Filter>sources\drawing\camera</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="sources\math\Intersection.cpp" />
-    <ClCompile Include="sources\models\physics\RaceCarPhysicalModel.cpp">
+    <ClCompile Include="sources\drawing\lighting\Lighting.cpp">
+      <Filter>sources\drawing\lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\Intersection.cpp">
+      <Filter>sources\math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\models\physics\PhysicalModelMovement.cpp">
       <Filter>sources\models\physics</Filter>
     </ClCompile>
-    <ClCompile Include="sources\models\physics\PhysicalModelMovement.cpp" />
-    <ClCompile Include="sources\drawing\lighting\Lighting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\scenes\RaceScene.h">
@@ -89,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="sources\racing\Race.h">
       <Filter>sources\racing</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\physics\PhysicalModelMovement.h">
+      <Filter>sources\models\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\models\physics\RaceCarPhysicalModel.h">
+      <Filter>sources\models\physics</Filter>
     </ClInclude>
     <ClInclude Include="sources\models\physics\PhysicalModel.h">
       <Filter>sources\models\physics</Filter>
@@ -135,15 +152,17 @@
     <ClInclude Include="sources\drawing\model\Shader.h">
       <Filter>sources\drawing\model</Filter>
     </ClInclude>
-    <ClInclude Include="sources\math\Intersection.h" />
-    <ClInclude Include="sources\models\physics\RaceCarPhysicalModel.h">
-      <Filter>sources\models\physics</Filter>
+    <ClInclude Include="sources\drawing\lighting\CachedLighting.h">
+      <Filter>sources\drawing\lighting</Filter>
     </ClInclude>
-    <ClInclude Include="sources\models\physics\PhysicalModelMovement.h">
-      <Filter>sources\models\physics</Filter>
+    <ClInclude Include="sources\drawing\lighting\Lighting.h">
+      <Filter>sources\drawing\lighting</Filter>
     </ClInclude>
-    <ClInclude Include="sources\drawing\lighting\CarLightSource.h" />
-    <ClInclude Include="sources\drawing\lighting\Lighting.h" />
-    <ClInclude Include="sources\drawing\lighting\CachedLighting.h" />
+    <ClInclude Include="sources\drawing\lighting\CarLightSource.h">
+      <Filter>sources\drawing\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\math\Intersection.h">
+      <Filter>sources\math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
